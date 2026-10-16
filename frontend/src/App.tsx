@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import Map, { Layer, Source, type MapRef } from "react-map-gl/maplibre";
 import Panel from './components/Panel.tsx'
+import BuildingMenu from "./components/BuildingMenu.tsx";
 import WeatherPanel from "./components/WeatherPanel.tsx";
 import Building, { loadBuildings } from "./models/Building.ts";
 import { loadRoute, type RouteFeature } from "./models/Route.ts";
-import {House} from "lucide-react"
+import {House, Ellipsis} from "lucide-react"
 import './App.css'
 
 export default function App() {
   const [buildings, setBuildings] = useState<Building[]>([]);
   const [selectedBuilding, setSelectedBuilding] = useState<string | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [route, setRoute] = useState<RouteFeature | null>(null);
   const [routeLoading, setRouteLoading] = useState(false);
   const [routeError, setRouteError] = useState<string | null>(null);
@@ -87,6 +89,8 @@ export default function App() {
     );
   };
 
+  const openMenu = () => setIsMenuOpen((isOpen) => !isOpen);
+
   return (
     <>
       <WeatherPanel />
@@ -136,7 +140,22 @@ export default function App() {
           </div>
         </Panel>
       ))}
+      <Panel className="m-2 cursor-pointer" onClick={openMenu}>
+        <Ellipsis aria-hidden="true" />
+        <span className="sr-only">Show all buildings</span>
+      </Panel>
     </div>
+    {isMenuOpen && (
+      <BuildingMenu
+        buildings={buildings}
+        selectedBuilding={selectedBuilding}
+        onSelect={(building) => {
+          setIsMenuOpen(false);
+          selectBuilding(building);
+        }}
+        onClose={() => setIsMenuOpen(false)}
+      />
+    )}
     {(routeLoading || routeError) && (
       <div style={{ position: "absolute", left: "0", bottom: "0" }}>
         <Panel className="m-2">

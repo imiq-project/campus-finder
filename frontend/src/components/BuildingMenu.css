@@ -1,0 +1,73 @@
+.building-menu {
+  position: fixed;
+  top: 5rem;
+  left: 0.5rem;
+  z-index: 3;
+  display: flex;
+  width: min(22rem, calc(100vw - 1rem));
+  max-height: min(70vh, 36rem);
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.building-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.building-menu-header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.building-menu-close {
+  display: grid;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.building-menu-close:hover,
+.building-menu-close:focus-visible {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.building-menu-list {
+  overflow-y: auto;
+  margin: 0.75rem -0.5rem 0;
+  padding: 0 0.5rem;
+  list-style: none;
+}
+
+.building-menu-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.building-menu-item svg {
+  flex-shrink: 0;
+}
+
+.building-menu-item:hover,
+.building-menu-item:focus-visible,
+.building-menu-item.is-selected {
+  background: rgba(255, 255, 255, 0.16);
+}
