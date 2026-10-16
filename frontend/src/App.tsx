@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Map, { Layer, Source, type MapRef } from "react-map-gl/maplibre";
 import Panel from './components/Panel.tsx'
+import WeatherPanel from "./components/WeatherPanel.tsx";
 import Building, { loadBuildings } from "./models/Building.ts";
 import { loadRoute, type RouteFeature } from "./models/Route.ts";
 import {House} from "lucide-react"
@@ -88,6 +89,7 @@ export default function App() {
 
   return (
     <>
+      <WeatherPanel />
       <div style={{ width: "100%", height: "100vh" }}>
         <Map
           ref={mapRef}
