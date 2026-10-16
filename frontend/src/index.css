@@ -1,0 +1,15 @@
+@import "maplibre-gl/dist/maplibre-gl.css";
+@import "tailwindcss";
+
+:root {
+  --color-primary: #7a003f;   /* OVGU Burgunder */
+  --color-secondary: #ffffff; /* White */
+  --color-accent: #623cea;    /* Majorelle blue */
+  --color-neutral: #a5c4d4;   /* Pale sky blue */
+}
+
+html body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Barlow', sans-serif;
+}

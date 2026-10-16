@@ -1,0 +1,9 @@
+.building-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.building-title svg {
+  flex-shrink: 0;
+}
