@@ -1,0 +1,18 @@
+{
+    "main": {
+        "maxPitch": 80,
+        "longitude": 11.644423729478149,
+        "latitude": 52.13990136536776,
+        "zoom": 16.5,
+        "pitch": 44.48057832724647,
+        "bearing": 8
+    },
+    "pfaelzer": {
+        "maxPitch": 80,
+        "longitude": 11.645297687180646,
+        "latitude": 52.13984623034621,
+        "zoom": 17,
+        "pitch": 60,
+        "bearing": -84
+    }
+}

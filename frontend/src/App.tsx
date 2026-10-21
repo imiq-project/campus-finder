@@ -7,6 +7,18 @@ import Building, { loadBuildings } from "./models/Building.ts";
 import { loadRoute, type RouteFeature } from "./models/Route.ts";
 import {House, Ellipsis} from "lucide-react"
 import './App.css'
+import configs from "./assets/configs.json"
+
+type MapConfig = typeof configs.main;
+
+declare global {
+  interface Window {
+    dumpConfig?: () => MapConfig | undefined;
+  }
+}
+
+const isConfigName = (name: string): name is keyof typeof configs =>
+  Object.prototype.hasOwnProperty.call(configs, name);
 
 export default function App() {
   const [buildings, setBuildings] = useState<Building[]>([]);
@@ -30,6 +42,33 @@ export default function App() {
   useEffect(() => () => {
     routeRequestId.current += 1;
     routeController.current?.abort();
+  }, []);
+
+  useEffect(() => {
+    window.dumpConfig = () => {
+      const map = mapRef.current?.getMap();
+      if (!map) {
+        console.warn("Map is not ready; cannot dump its settings.");
+        return undefined;
+      }
+
+      const center = map.getCenter();
+      const mapConfig: MapConfig = {
+        maxPitch: map.getMaxPitch(),
+        longitude: center.lng,
+        latitude: center.lat,
+        zoom: map.getZoom(),
+        pitch: map.getPitch(),
+        bearing: map.getBearing(),
+      };
+
+      console.log(JSON.stringify(mapConfig, null, 2));
+      return mapConfig;
+    };
+
+    return () => {
+      delete window.dumpConfig;
+    };
   }, []);
 
   const selectBuilding = (building: Building) => {
@@ -90,6 +129,10 @@ export default function App() {
   };
 
   const openMenu = () => setIsMenuOpen((isOpen) => !isOpen);
+  const requestedConfigName = new URLSearchParams(window.location.search).get("configName");
+  const config = requestedConfigName && isConfigName(requestedConfigName)
+    ? configs[requestedConfigName]
+    : configs.main;
 
   return (
     <>
@@ -97,14 +140,14 @@ export default function App() {
       <div style={{ width: "100%", height: "100vh" }}>
         <Map
           ref={mapRef}
-          maxPitch={80}
+          maxPitch={config.maxPitch}
           attributionControl={false}
           initialViewState={{
-            longitude: 11.645297687180646,
-            latitude: 52.13984623034621,
-            zoom: 17,
-            pitch: 60,
-            bearing: -84,
+            longitude: config.longitude,
+            latitude: config.latitude,
+            zoom: config.zoom,
+            pitch: config.pitch,
+            bearing: config.bearing,
           }}
           mapStyle="https://tiles.openfreemap.org/styles/liberty"
           onStyleData={({ target: map }) => {
