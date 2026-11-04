@@ -17,9 +17,9 @@
   width: max-content;
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
-  font-size: 0.75rem;
+  font-size: 20px;
   white-space: nowrap;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .destination-marker-label-above {
@@ -59,6 +59,37 @@
   max-width: 16rem;
   white-space: normal;
   text-align: center;
+  font-size: 16px;
+}
+
+.destination-qr-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.destination-popup-close {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0.125rem;
+  border: 0;
+  border-radius: 0.25rem;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.destination-popup-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.destination-popup-close svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 .destination-qr svg {

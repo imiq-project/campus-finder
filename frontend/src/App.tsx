@@ -6,7 +6,7 @@ import WeatherPanel from "./components/WeatherPanel.tsx";
 import Building, { loadBuildings } from "./models/Building.ts";
 import { findNearestRestroom, findNearestRoomByTypePrefix, loadRooms, type Room } from "./models/Room.ts";
 import { loadRoute, type RouteFeature } from "./models/Route.ts";
-import { Baby, Droplets, Ellipsis, House, Toilet } from "lucide-react";
+import { Baby, Droplets, Ellipsis, House, Toilet, X } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import './App.css'
 import configs from "./assets/configs.json"
@@ -167,6 +167,22 @@ export default function App() {
         fail(error instanceof Error ? error.message : "Failed to load the route.");
       });
   }, [config]);
+
+  const clearRoute = () => {
+    routeRequestId.current += 1;
+    routeController.current?.abort();
+    routeController.current = null;
+
+    const url = new URL(window.location.href);
+    url.searchParams.delete("destination");
+    window.history.replaceState(window.history.state, "", url);
+
+    setRoute(null);
+    setSelectedBuilding(null);
+    setSelectedDestination(null);
+    setRouteLoading(false);
+    setRouteError(null);
+  };
 
   const selectBuilding = (building: Building) => {
     navigateTo(
@@ -408,14 +424,25 @@ export default function App() {
                 <div className="destination-marker">
                   <Panel className={`destination-marker-label destination-marker-label-${routeLabelPosition}`}>
                     <div className="destination-qr">
-                      <span className="destination-qr-destination">
-                        {selectedDestination ?? "Route end"}
-                      </span>
+                      <div className="destination-qr-heading">
+                        <span className="destination-qr-destination">
+                          {selectedDestination ?? "Route end"}
+                        </span>
+                        <button
+                          type="button"
+                          className="destination-popup-close"
+                          aria-label="Close route"
+                          onClick={clearRoute}
+                        >
+                          <X aria-hidden="true" />
+                        </button>
+                      </div>
                       <QRCodeSVG
                         value={window.location.href}
                         size={128}
                         level="M"
                         bgColor="transparent"
+                        fgColor="white"
                         title="Scan to open this destination on your phone"
                       />
                     </div>
