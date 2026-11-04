@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Map, { Layer, Source, type MapRef } from "react-map-gl/maplibre";
+import Map, { Layer, Marker, Source, type MapRef } from "react-map-gl/maplibre";
 import Panel from './components/Panel.tsx'
 import BuildingMenu from "./components/BuildingMenu.tsx";
 import WeatherPanel from "./components/WeatherPanel.tsx";
@@ -86,46 +86,41 @@ export default function App() {
       }
     };
 
-    if (!navigator.geolocation) {
-      fail("Your browser does not support location access.");
-      return;
-    }
+    if (routeRequestId.current !== requestId) return;
 
-    navigator.geolocation.getCurrentPosition(
-      async ({ coords }) => {
+    const controller = new AbortController();
+    routeController.current = controller;
+
+    void loadRoute(
+      { lat: config.latitude, lon: config.longitude },
+      { lat: building.lat, lon: building.lon },
+      controller.signal,
+    )
+      .then((feature) => {
         if (routeRequestId.current !== requestId) return;
 
-        const controller = new AbortController();
-        routeController.current = controller;
-
-        try {
-          const feature = await loadRoute(
-            { lat: coords.latitude, lon: coords.longitude },
-            { lat: building.lat, lon: building.lon },
-            controller.signal,
-          );
-          if (routeRequestId.current !== requestId) return;
-
-          setRoute(feature);
-          setRouteLoading(false);
-          const coordinates = feature.geometry.coordinates;
-          const longitudes = coordinates.map(([longitude]) => longitude);
-          const latitudes = coordinates.map(([, latitude]) => latitude);
-          mapRef.current?.fitBounds(
-            [
-              [Math.min(...longitudes), Math.min(...latitudes)],
-              [Math.max(...longitudes), Math.max(...latitudes)],
-            ],
-            { padding: 64, duration: 1000, maxZoom: 17 },
-          );
-        } catch (error) {
-          if (controller.signal.aborted) return;
-          fail(error instanceof Error ? error.message : "Failed to load the route.");
-        }
-      },
-      (error) => fail(`Could not get your location: ${error.message}`),
-      { enableHighAccuracy: true },
-    );
+        setRoute(feature);
+        setRouteLoading(false);
+        const coordinates = feature.geometry.coordinates;
+        const longitudes = coordinates.map(([longitude]) => longitude);
+        const latitudes = coordinates.map(([, latitude]) => latitude);
+        mapRef.current?.fitBounds(
+          [
+            [Math.min(...longitudes), Math.min(...latitudes)],
+            [Math.max(...longitudes), Math.max(...latitudes)],
+          ],
+          {
+            padding: 64,
+            duration: 1000,
+            maxZoom: 17,
+            bearing: mapRef.current?.getMap().getBearing() ?? config.bearing,
+          },
+        );
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return;
+        fail(error instanceof Error ? error.message : "Failed to load the route.");
+      });
   };
 
   const openMenu = () => setIsMenuOpen((isOpen) => !isOpen);
@@ -133,6 +128,7 @@ export default function App() {
   const config = requestedConfigName && isConfigName(requestedConfigName)
     ? configs[requestedConfigName]
     : configs.main;
+  const routeEnd = route?.geometry.coordinates.at(-1);
 
   return (
     <>
@@ -158,15 +154,55 @@ export default function App() {
             });
           }}
         >
-          {route && (
-            <Source id="building-route" type="geojson" data={route}>
-              <Layer
-                id="building-route-line"
-                type="line"
-                layout={{ "line-cap": "round", "line-join": "round" }}
-                paint={{ "line-color": "#e11d48", "line-width": 5, "line-opacity": 0.9 }}
-              />
-            </Source>
+          <Marker
+            longitude={config.longitude}
+            latitude={config.latitude}
+            anchor="center"
+          >
+            <div
+              role="img"
+              aria-label="Route start"
+              title="Route start"
+              style={{
+                width: 18,
+                height: 18,
+                borderRadius: "50%",
+                border: "3px solid white",
+                backgroundColor: "#16a34a",
+                boxShadow: "0 1px 4px #0008",
+              }}
+            />
+          </Marker>
+          {route && routeEnd && (
+            <>
+              <Source id="building-route" type="geojson" data={route}>
+                <Layer
+                  id="building-route-line"
+                  type="line"
+                  layout={{ "line-cap": "round", "line-join": "round" }}
+                  paint={{ "line-color": "#e11d48", "line-width": 5, "line-opacity": 0.9 }}
+                />
+              </Source>
+              <Marker
+                longitude={routeEnd[0]}
+                latitude={routeEnd[1]}
+                anchor="center"
+              >
+                <div
+                  role="img"
+                  aria-label="Route end"
+                  title="Route end"
+                  style={{
+                    width: 18,
+                    height: 18,
+                    borderRadius: "50%",
+                    border: "3px solid white",
+                    backgroundColor: "#e11d48",
+                    boxShadow: "0 1px 4px #0008",
+                  }}
+                />
+              </Marker>
+            </>
           )}
         </Map>
       </div>
