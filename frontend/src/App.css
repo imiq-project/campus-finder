@@ -1,3 +1,14 @@
+.building-panels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 12rem;
+}
+
 .building-title {
   display: flex;
   align-items: center;

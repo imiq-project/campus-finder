@@ -459,7 +459,7 @@ export default function App() {
           )}
         </Map>
       </div>
-    <div style={{position: "absolute", left: "0", top: "0"}} className="flex">
+    <div className="building-panels">
       <Panel
         className={`m-2 cursor-pointer${selectedBuilding === null && selectedDestination?.startsWith("Restroom:") ? " is-selected" : ""}`}
         onClick={selectNearestRestroom}
