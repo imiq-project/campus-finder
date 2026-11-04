@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Map, { Layer, Marker, Source, type MapRef } from "react-map-gl/maplibre";
 import Panel from './components/Panel.tsx'
 import BuildingMenu from "./components/BuildingMenu.tsx";
@@ -6,7 +6,8 @@ import WeatherPanel from "./components/WeatherPanel.tsx";
 import Building, { loadBuildings } from "./models/Building.ts";
 import { findNearestRestroom, findNearestRoomByTypePrefix, loadRooms, type Room } from "./models/Room.ts";
 import { loadRoute, type RouteFeature } from "./models/Route.ts";
-import { Droplets, Ellipsis, House, Toilet } from "lucide-react";
+import { Baby, Droplets, Ellipsis, House, Toilet } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
 import './App.css'
 import configs from "./assets/configs.json"
 
@@ -22,8 +23,18 @@ const isConfigName = (name: string): name is keyof typeof configs =>
   Object.prototype.hasOwnProperty.call(configs, name);
 
 export default function App() {
+  const requestedConfigName = new URLSearchParams(window.location.search).get("configName");
+  const config = requestedConfigName && isConfigName(requestedConfigName)
+    ? configs[requestedConfigName]
+    : configs.main;
+  const initialDestination = useRef(
+    new URLSearchParams(window.location.search).get("destination"),
+  );
+  const destinationRestored = useRef(false);
   const [buildings, setBuildings] = useState<Building[]>([]);
+  const [buildingsLoaded, setBuildingsLoaded] = useState(false);
   const [rooms, setRooms] = useState<Room[]>([]);
+  const [roomsLoaded, setRoomsLoaded] = useState(false);
   const [selectedBuilding, setSelectedBuilding] = useState<string | null>(null);
   const [selectedDestination, setSelectedDestination] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,15 +42,23 @@ export default function App() {
   const [routeLoading, setRouteLoading] = useState(false);
   const [routeError, setRouteError] = useState<string | null>(null);
   const [roomsError, setRoomsError] = useState<string | null>(null);
+  const [buildingsError, setBuildingsError] = useState<string | null>(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
   const mapRef = useRef<MapRef>(null);
   const routeRequestId = useRef(0);
   const routeController = useRef<AbortController | null>(null);
 
   useEffect(() => {
     void loadBuildings()
-      .then(setBuildings)
+      .then((loadedBuildings) => {
+        setBuildings(loadedBuildings);
+      })
       .catch((error: unknown) => {
         console.error("Failed to load buildings:", error);
+        setBuildingsError(error instanceof Error ? error.message : "Failed to load buildings.");
+      })
+      .finally(() => {
+        setBuildingsLoaded(true);
       });
   }, []);
 
@@ -49,6 +68,9 @@ export default function App() {
       .catch((error: unknown) => {
         console.error("Failed to load rooms:", error);
         setRoomsError(error instanceof Error ? error.message : "Failed to load rooms.");
+      })
+      .finally(() => {
+        setRoomsLoaded(true);
       });
   }, []);
 
@@ -84,11 +106,16 @@ export default function App() {
     };
   }, []);
 
-  const navigateTo = (
+  const navigateTo = useCallback((
     destination: { lat: number; lon: number },
     destinationName: string,
     buildingName: string | null,
+    destinationParam: string,
   ) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("destination", destinationParam);
+    window.history.replaceState(window.history.state, "", url);
+
     const requestId = ++routeRequestId.current;
     routeController.current?.abort();
     setSelectedBuilding(buildingName);
@@ -139,11 +166,12 @@ export default function App() {
         if (controller.signal.aborted) return;
         fail(error instanceof Error ? error.message : "Failed to load the route.");
       });
-  };
+  }, [config]);
 
   const selectBuilding = (building: Building) => {
     navigateTo(
       { lat: building.lat, lon: building.lon },
+      building.name,
       building.name,
       building.name,
     );
@@ -168,6 +196,7 @@ export default function App() {
       { lat: restroom.lat, lon: restroom.lon },
       `Restroom: ${restroom.building}, room ${restroom.room}`,
       null,
+      "restroom",
     );
   };
 
@@ -190,15 +219,132 @@ export default function App() {
       { lat: room.lat, lon: room.lon },
       `Period products: ${room.building}, room ${room.room}`,
       null,
+      "period-products",
     );
   };
 
+  const selectNearestChangingTable = () => {
+    if (roomsError) {
+      setRouteError(roomsError);
+      return;
+    }
+
+    const room = findNearestRoomByTypePrefix(rooms, {
+      lat: config.latitude,
+      lon: config.longitude,
+    }, "changing-table");
+    if (!room || room.lat === null || room.lon === null) {
+      setRouteError("No changing-table locations with coordinates are available.");
+      return;
+    }
+
+    navigateTo(
+      { lat: room.lat, lon: room.lon },
+      `Changing table: ${room.building}, room ${room.room}`,
+      null,
+      "changing-table",
+    );
+  };
+
+  useEffect(() => {
+    const destinationParam = initialDestination.current;
+    if (!destinationParam || destinationRestored.current || !mapLoaded) return;
+
+    if (!["restroom", "period-products", "changing-table"].includes(destinationParam)) {
+      if (!buildingsLoaded) return;
+      destinationRestored.current = true;
+      if (buildingsError) {
+        setRouteError(buildingsError);
+        return;
+      }
+
+      const building = buildings.find(({ name }) => name === destinationParam);
+      if (!building) {
+        setRouteError(`Building "${destinationParam}" was not found.`);
+        return;
+      }
+      navigateTo(
+        { lat: building.lat, lon: building.lon },
+        building.name,
+        building.name,
+        destinationParam,
+      );
+      return;
+    }
+
+    if (!roomsLoaded) return;
+    destinationRestored.current = true;
+
+    if (roomsError) {
+      setRouteError(roomsError);
+      return;
+    }
+
+    if (destinationParam === "restroom") {
+      const room = findNearestRestroom(rooms, {
+        lat: config.latitude,
+        lon: config.longitude,
+      });
+      if (!room || room.lat === null || room.lon === null) {
+        setRouteError("No restroom locations with coordinates are available.");
+        return;
+      }
+      navigateTo(
+        { lat: room.lat, lon: room.lon },
+        `Restroom: ${room.building}, room ${room.room}`,
+        null,
+        destinationParam,
+      );
+    } else if (destinationParam === "period-products") {
+      const room = findNearestRoomByTypePrefix(rooms, {
+        lat: config.latitude,
+        lon: config.longitude,
+      }, "menstrual-product");
+      if (!room || room.lat === null || room.lon === null) {
+        setRouteError("No period-product locations with coordinates are available.");
+        return;
+      }
+      navigateTo(
+        { lat: room.lat, lon: room.lon },
+        `Period products: ${room.building}, room ${room.room}`,
+        null,
+        destinationParam,
+      );
+    } else {
+      const room = findNearestRoomByTypePrefix(rooms, {
+        lat: config.latitude,
+        lon: config.longitude,
+      }, "changing-table");
+      if (!room || room.lat === null || room.lon === null) {
+        setRouteError("No changing-table locations with coordinates are available.");
+        return;
+      }
+      navigateTo(
+        { lat: room.lat, lon: room.lon },
+        `Changing table: ${room.building}, room ${room.room}`,
+        null,
+        destinationParam,
+      );
+    }
+  }, [buildings, buildingsError, buildingsLoaded, config, mapLoaded, navigateTo, rooms, roomsError, roomsLoaded]);
+
   const openMenu = () => setIsMenuOpen((isOpen) => !isOpen);
-  const requestedConfigName = new URLSearchParams(window.location.search).get("configName");
-  const config = requestedConfigName && isConfigName(requestedConfigName)
-    ? configs[requestedConfigName]
-    : configs.main;
   const routeEnd = route?.geometry.coordinates.at(-1);
+  const routeLabelPosition = (() => {
+    const coordinates = route?.geometry.coordinates;
+    const map = mapRef.current?.getMap();
+    if (!coordinates || coordinates.length < 2 || !map || !routeEnd) return "above";
+
+    const previousPoint = map.project(coordinates[coordinates.length - 2]);
+    const destinationPoint = map.project(routeEnd);
+    const longitudeDirection = destinationPoint.x - previousPoint.x;
+    const latitudeDirection = destinationPoint.y - previousPoint.y;
+
+    if (Math.abs(longitudeDirection) > Math.abs(latitudeDirection)) {
+      return longitudeDirection > 0 ? "right" : "left";
+    }
+    return latitudeDirection > 0 ? "below" : "above";
+  })();
 
   return (
     <>
@@ -216,6 +362,7 @@ export default function App() {
             bearing: config.bearing,
           }}
           mapStyle="https://tiles.openfreemap.org/styles/liberty"
+          onIdle={() => setMapLoaded(true)}
           onStyleData={({ target: map }) => {
             map.getStyle().layers.forEach(layer => {
               if (layer.type === "symbol") {
@@ -258,19 +405,28 @@ export default function App() {
                 latitude={routeEnd[1]}
                 anchor="center"
               >
-                <div
-                  role="img"
-                  aria-label={selectedDestination ?? "Route end"}
-                  title={selectedDestination ?? "Route end"}
-                  style={{
-                    width: 18,
-                    height: 18,
-                    borderRadius: "50%",
-                    border: "3px solid white",
-                    backgroundColor: "#e11d48",
-                    boxShadow: "0 1px 4px #0008",
-                  }}
-                />
+                <div className="destination-marker">
+                  <Panel className={`destination-marker-label destination-marker-label-${routeLabelPosition}`}>
+                    <div className="destination-qr">
+                      <span className="destination-qr-destination">
+                        {selectedDestination ?? "Route end"}
+                      </span>
+                      <QRCodeSVG
+                        value={window.location.href}
+                        size={128}
+                        level="M"
+                        bgColor="transparent"
+                        title="Scan to open this destination on your phone"
+                      />
+                    </div>
+                  </Panel>
+                  <div
+                    role="img"
+                    aria-label={selectedDestination ?? "Route end"}
+                    title={selectedDestination ?? "Route end"}
+                    className="destination-marker-dot"
+                  />
+                </div>
               </Marker>
             </>
           )}
@@ -293,6 +449,15 @@ export default function App() {
         <div className="building-title">
           <Droplets aria-hidden="true" />
           <span>Period products</span>
+        </div>
+      </Panel>
+      <Panel
+        className={`m-2 cursor-pointer${selectedBuilding === null && selectedDestination?.startsWith("Changing table:") ? " is-selected" : ""}`}
+        onClick={selectNearestChangingTable}
+      >
+        <div className="building-title">
+          <Baby aria-hidden="true" />
+          <span>Changing table</span>
         </div>
       </Panel>
       {buildings.slice(0, 5).map((building) => (
