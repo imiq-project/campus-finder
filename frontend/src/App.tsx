@@ -4,8 +4,9 @@ import Panel from './components/Panel.tsx'
 import BuildingMenu from "./components/BuildingMenu.tsx";
 import WeatherPanel from "./components/WeatherPanel.tsx";
 import Building, { loadBuildings } from "./models/Building.ts";
+import { findNearestRestroom, findNearestRoomByTypePrefix, loadRooms, type Room } from "./models/Room.ts";
 import { loadRoute, type RouteFeature } from "./models/Route.ts";
-import {House, Ellipsis} from "lucide-react"
+import { Droplets, Ellipsis, House, Toilet } from "lucide-react";
 import './App.css'
 import configs from "./assets/configs.json"
 
@@ -22,11 +23,14 @@ const isConfigName = (name: string): name is keyof typeof configs =>
 
 export default function App() {
   const [buildings, setBuildings] = useState<Building[]>([]);
+  const [rooms, setRooms] = useState<Room[]>([]);
   const [selectedBuilding, setSelectedBuilding] = useState<string | null>(null);
+  const [selectedDestination, setSelectedDestination] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [route, setRoute] = useState<RouteFeature | null>(null);
   const [routeLoading, setRouteLoading] = useState(false);
   const [routeError, setRouteError] = useState<string | null>(null);
+  const [roomsError, setRoomsError] = useState<string | null>(null);
   const mapRef = useRef<MapRef>(null);
   const routeRequestId = useRef(0);
   const routeController = useRef<AbortController | null>(null);
@@ -36,6 +40,15 @@ export default function App() {
       .then(setBuildings)
       .catch((error: unknown) => {
         console.error("Failed to load buildings:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    void loadRooms()
+      .then(setRooms)
+      .catch((error: unknown) => {
+        console.error("Failed to load rooms:", error);
+        setRoomsError(error instanceof Error ? error.message : "Failed to load rooms.");
       });
   }, []);
 
@@ -71,10 +84,15 @@ export default function App() {
     };
   }, []);
 
-  const selectBuilding = (building: Building) => {
+  const navigateTo = (
+    destination: { lat: number; lon: number },
+    destinationName: string,
+    buildingName: string | null,
+  ) => {
     const requestId = ++routeRequestId.current;
     routeController.current?.abort();
-    setSelectedBuilding(building.name);
+    setSelectedBuilding(buildingName);
+    setSelectedDestination(destinationName);
     setRoute(null);
     setRouteError(null);
     setRouteLoading(true);
@@ -93,7 +111,7 @@ export default function App() {
 
     void loadRoute(
       { lat: config.latitude, lon: config.longitude },
-      { lat: building.lat, lon: building.lon },
+      destination,
       controller.signal,
     )
       .then((feature) => {
@@ -121,6 +139,58 @@ export default function App() {
         if (controller.signal.aborted) return;
         fail(error instanceof Error ? error.message : "Failed to load the route.");
       });
+  };
+
+  const selectBuilding = (building: Building) => {
+    navigateTo(
+      { lat: building.lat, lon: building.lon },
+      building.name,
+      building.name,
+    );
+  };
+
+  const selectNearestRestroom = () => {
+    if (roomsError) {
+      setRouteError(roomsError);
+      return;
+    }
+
+    const restroom = findNearestRestroom(rooms, {
+      lat: config.latitude,
+      lon: config.longitude,
+    });
+    if (!restroom || restroom.lat === null || restroom.lon === null) {
+      setRouteError("No restroom locations with coordinates are available.");
+      return;
+    }
+
+    navigateTo(
+      { lat: restroom.lat, lon: restroom.lon },
+      `Restroom: ${restroom.building}, room ${restroom.room}`,
+      null,
+    );
+  };
+
+  const selectNearestPeriodProduct = () => {
+    if (roomsError) {
+      setRouteError(roomsError);
+      return;
+    }
+
+    const room = findNearestRoomByTypePrefix(rooms, {
+      lat: config.latitude,
+      lon: config.longitude,
+    }, "menstrual-product");
+    if (!room || room.lat === null || room.lon === null) {
+      setRouteError("No period-product locations with coordinates are available.");
+      return;
+    }
+
+    navigateTo(
+      { lat: room.lat, lon: room.lon },
+      `Period products: ${room.building}, room ${room.room}`,
+      null,
+    );
   };
 
   const openMenu = () => setIsMenuOpen((isOpen) => !isOpen);
@@ -190,8 +260,8 @@ export default function App() {
               >
                 <div
                   role="img"
-                  aria-label="Route end"
-                  title="Route end"
+                  aria-label={selectedDestination ?? "Route end"}
+                  title={selectedDestination ?? "Route end"}
                   style={{
                     width: 18,
                     height: 18,
@@ -207,6 +277,24 @@ export default function App() {
         </Map>
       </div>
     <div style={{position: "absolute", left: "0", top: "0"}} className="flex">
+      <Panel
+        className={`m-2 cursor-pointer${selectedBuilding === null && selectedDestination?.startsWith("Restroom:") ? " is-selected" : ""}`}
+        onClick={selectNearestRestroom}
+      >
+        <div className="building-title">
+          <Toilet aria-hidden="true" />
+          <span>WC</span>
+        </div>
+      </Panel>
+      <Panel
+        className={`m-2 cursor-pointer${selectedBuilding === null && selectedDestination?.startsWith("Period products:") ? " is-selected" : ""}`}
+        onClick={selectNearestPeriodProduct}
+      >
+        <div className="building-title">
+          <Droplets aria-hidden="true" />
+          <span>Period products</span>
+        </div>
+      </Panel>
       {buildings.slice(0, 5).map((building) => (
         <Panel
           key={building.name}

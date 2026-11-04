@@ -1,0 +1,1269 @@
+[
+    {
+        "building": "01 Ersatzneubau",
+        "room": 25,
+        "type": "changing-table",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": "01 Ersatzneubau",
+        "room": 25,
+        "type": "menstrual-product",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": "01 Ersatzneubau",
+        "room": 25,
+        "type": "restroom-accessible",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": "01 Ersatzneubau",
+        "room": 27,
+        "type": "restroom-male",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": "01 Ersatzneubau",
+        "room": 37,
+        "type": "restroom-male",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": "01 Ersatzneubau",
+        "room": 113,
+        "type": "restroom-male",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": "01 Ersatzneubau",
+        "room": 125,
+        "type": "restroom-accessible",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": "01 Ersatzneubau",
+        "room": 206,
+        "type": "restroom-male",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": 2,
+        "room": 26,
+        "type": "restroom-male",
+        "lat": 52.140495,
+        "lon": 11.640412
+    },
+    {
+        "building": 2,
+        "room": 115,
+        "type": "changing-table",
+        "lat": 52.140495,
+        "lon": 11.640412
+    },
+    {
+        "building": 2,
+        "room": 118,
+        "type": "restroom-male",
+        "lat": 52.140495,
+        "lon": 11.640412
+    },
+    {
+        "building": 2,
+        "room": 228,
+        "type": "menstrual-product",
+        "lat": 52.140495,
+        "lon": 11.640412
+    },
+    {
+        "building": 2,
+        "room": 230,
+        "type": "restroom-male",
+        "lat": 52.140495,
+        "lon": 11.640412
+    },
+    {
+        "building": 2,
+        "room": 308,
+        "type": "restroom-male",
+        "lat": 52.140495,
+        "lon": 11.640412
+    },
+    {
+        "building": 3,
+        "room": 3,
+        "type": "restroom-male",
+        "lat": 52.141239,
+        "lon": 11.640766
+    },
+    {
+        "building": 3,
+        "room": "003A",
+        "type": "restroom-accessible",
+        "lat": 52.141239,
+        "lon": 11.640766
+    },
+    {
+        "building": 3,
+        "room": 32,
+        "type": "restroom-male",
+        "lat": 52.141239,
+        "lon": 11.640766
+    },
+    {
+        "building": 3,
+        "room": 127,
+        "type": "restroom-male",
+        "lat": 52.141239,
+        "lon": 11.640766
+    },
+    {
+        "building": 3,
+        "room": 203,
+        "type": "restroom-male",
+        "lat": 52.141239,
+        "lon": 11.640766
+    },
+    {
+        "building": 3,
+        "room": 229,
+        "type": "restroom-male",
+        "lat": 52.141239,
+        "lon": 11.640766
+    },
+    {
+        "building": 3,
+        "room": 304,
+        "type": "restroom-male",
+        "lat": 52.141239,
+        "lon": 11.640766
+    },
+    {
+        "building": 3,
+        "room": 304,
+        "type": "changing-table",
+        "lat": 52.141239,
+        "lon": 11.640766
+    },
+    {
+        "building": 3,
+        "room": 320,
+        "type": "restroom-male",
+        "lat": 52.141239,
+        "lon": 11.640766
+    },
+    {
+        "building": 5,
+        "room": "111A",
+        "type": "restroom-male",
+        "lat": 52.14047,
+        "lon": 11.641155
+    },
+    {
+        "building": 5,
+        "room": "112B",
+        "type": "restroom-accessible",
+        "lat": 52.14047,
+        "lon": 11.641155
+    },
+    {
+        "building": 7,
+        "room": "203C",
+        "type": "restroom-male",
+        "lat": 52.139706,
+        "lon": 11.641034
+    },
+    {
+        "building": 7,
+        "room": "K07C",
+        "type": "restroom-male",
+        "lat": 52.139706,
+        "lon": 11.641034
+    },
+    {
+        "building": 8,
+        "room": 4,
+        "type": "restroom-accessible",
+        "lat": 52.139614,
+        "lon": 11.6437
+    },
+    {
+        "building": 8,
+        "room": 8,
+        "type": "restroom-male",
+        "lat": 52.139614,
+        "lon": 11.6437
+    },
+    {
+        "building": 9,
+        "room": 35,
+        "type": "restroom-male",
+        "lat": 52.139192,
+        "lon": 11.640953
+    },
+    {
+        "building": 9,
+        "room": 36,
+        "type": "restroom-accessible",
+        "lat": 52.139192,
+        "lon": 11.640953
+    },
+    {
+        "building": 9,
+        "room": 139,
+        "type": "restroom-male",
+        "lat": 52.139192,
+        "lon": 11.640953
+    },
+    {
+        "building": 9,
+        "room": 235,
+        "type": "restroom-male",
+        "lat": 52.139192,
+        "lon": 11.640953
+    },
+    {
+        "building": 9,
+        "room": 335,
+        "type": "restroom-male",
+        "lat": 52.139192,
+        "lon": 11.640953
+    },
+    {
+        "building": 9,
+        "room": 435,
+        "type": "restroom-male",
+        "lat": 52.139192,
+        "lon": 11.640953
+    },
+    {
+        "building": 10,
+        "room": "006A",
+        "type": "restroom-male",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": "028A",
+        "type": "restroom-male",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": 106,
+        "type": "menstrual-product",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": "107A",
+        "type": "restroom-male",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": 113,
+        "type": "restroom-accessible",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": "128A",
+        "type": "restroom-male",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": "207A",
+        "type": "restroom-male",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": "230A",
+        "type": "restroom-male",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": "308A",
+        "type": "restroom-male",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": 318,
+        "type": "restroom-accessible",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": "331A",
+        "type": "restroom-male",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": "405A",
+        "type": "restroom-male",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": "430A",
+        "type": "restroom-male",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 10,
+        "room": "K05A",
+        "type": "restroom-male",
+        "lat": 52.139166,
+        "lon": 11.64241
+    },
+    {
+        "building": 11,
+        "room": 112,
+        "type": "restroom-male",
+        "lat": 52.139632,
+        "lon": 11.642115
+    },
+    {
+        "building": 12,
+        "room": 1,
+        "type": "restroom-male",
+        "lat": 52.140269,
+        "lon": 11.642187
+    },
+    {
+        "building": 12,
+        "room": 17,
+        "type": "restroom-accessible",
+        "lat": 52.140269,
+        "lon": 11.642187
+    },
+    {
+        "building": 12,
+        "room": 120,
+        "type": "restroom-male",
+        "lat": 52.140269,
+        "lon": 11.642187
+    },
+    {
+        "building": 12,
+        "room": 203,
+        "type": "restroom-male",
+        "lat": 52.140269,
+        "lon": 11.642187
+    },
+    {
+        "building": 12,
+        "room": "K06",
+        "type": "restroom-male",
+        "lat": 52.140269,
+        "lon": 11.642187
+    },
+    {
+        "building": 13,
+        "room": 14,
+        "type": "restroom-male",
+        "lat": 52.140496,
+        "lon": 11.642126
+    },
+    {
+        "building": 15,
+        "room": 4,
+        "type": "restroom-male",
+        "lat": 52.140993,
+        "lon": 11.643941
+    },
+    {
+        "building": 15,
+        "room": 31,
+        "type": "restroom-male",
+        "lat": 52.140993,
+        "lon": 11.643941
+    },
+    {
+        "building": 15,
+        "room": "K37",
+        "type": "restroom-male",
+        "lat": 52.140993,
+        "lon": 11.643941
+    },
+    {
+        "building": 16,
+        "room": 10,
+        "type": "restroom-accessible",
+        "lat": 52.140318,
+        "lon": 11.643885
+    },
+    {
+        "building": 16,
+        "room": 13,
+        "type": "restroom-male",
+        "lat": 52.140318,
+        "lon": 11.643885
+    },
+    {
+        "building": 16,
+        "room": 25,
+        "type": "restroom-male",
+        "lat": 52.140318,
+        "lon": 11.643885
+    },
+    {
+        "building": 16,
+        "room": 69,
+        "type": "restroom-male",
+        "lat": 52.140318,
+        "lon": 11.643885
+    },
+    {
+        "building": 16,
+        "room": 72,
+        "type": "menstrual-product",
+        "lat": 52.140318,
+        "lon": 11.643885
+    },
+    {
+        "building": 16,
+        "room": 119,
+        "type": "restroom-male",
+        "lat": 52.140318,
+        "lon": 11.643885
+    },
+    {
+        "building": 16,
+        "room": 130,
+        "type": "restroom-male",
+        "lat": 52.140318,
+        "lon": 11.643885
+    },
+    {
+        "building": 16,
+        "room": 166,
+        "type": "restroom-male",
+        "lat": 52.140318,
+        "lon": 11.643885
+    },
+    {
+        "building": 16,
+        "room": 213,
+        "type": "restroom-male",
+        "lat": 52.140318,
+        "lon": 11.643885
+    },
+    {
+        "building": 16,
+        "room": 225,
+        "type": "restroom-male",
+        "lat": 52.140318,
+        "lon": 11.643885
+    },
+    {
+        "building": 16,
+        "room": 260,
+        "type": "restroom-male",
+        "lat": 52.140318,
+        "lon": 11.643885
+    },
+    {
+        "building": 16,
+        "room": "K47",
+        "type": "restroom-male",
+        "lat": 52.140318,
+        "lon": 11.643885
+    },
+    {
+        "building": 18,
+        "room": 112,
+        "type": "changing-table",
+        "lat": 52.13913,
+        "lon": 11.644746
+    },
+    {
+        "building": 18,
+        "room": 112,
+        "type": "restroom-accessible",
+        "lat": 52.13913,
+        "lon": 11.644746
+    },
+    {
+        "building": 18,
+        "room": 214,
+        "type": "restroom-male",
+        "lat": 52.13913,
+        "lon": 11.644746
+    },
+    {
+        "building": 18,
+        "room": 310,
+        "type": "restroom-male",
+        "lat": 52.13913,
+        "lon": 11.644746
+    },
+    {
+        "building": 18,
+        "room": 410,
+        "type": "restroom-male",
+        "lat": 52.13913,
+        "lon": 11.644746
+    },
+    {
+        "building": 18,
+        "room": 510,
+        "type": "restroom-male",
+        "lat": 52.13913,
+        "lon": 11.644746
+    },
+    {
+        "building": 21,
+        "room": 106,
+        "type": "restroom-male",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": "22A",
+        "room": 7,
+        "type": "changing-table",
+        "lat": 52.140193,
+        "lon": 11.645789
+    },
+    {
+        "building": "22A",
+        "room": 7,
+        "type": "restroom-accessible",
+        "lat": 52.140193,
+        "lon": 11.645789
+    },
+    {
+        "building": "22A",
+        "room": 10,
+        "type": "restroom-male",
+        "lat": 52.140193,
+        "lon": 11.645789
+    },
+    {
+        "building": "22A",
+        "room": 17,
+        "type": "menstrual-product",
+        "lat": 52.140193,
+        "lon": 11.645789
+    },
+    {
+        "building": "22C",
+        "room": 5,
+        "type": "menstrual-product",
+        "lat": 52.140193,
+        "lon": 11.645789
+    },
+    {
+        "building": "22E",
+        "room": 203,
+        "type": "restroom-male",
+        "lat": 52.140193,
+        "lon": 11.645789
+    },
+    {
+        "building": 23,
+        "room": 21,
+        "type": "restroom-male",
+        "lat": 52.140702,
+        "lon": 11.646428
+    },
+    {
+        "building": 23,
+        "room": 121,
+        "type": "restroom-male",
+        "lat": 52.140702,
+        "lon": 11.646428
+    },
+    {
+        "building": 23,
+        "room": 224,
+        "type": "restroom-male",
+        "lat": 52.140702,
+        "lon": 11.646428
+    },
+    {
+        "building": 23,
+        "room": 321,
+        "type": "restroom-male",
+        "lat": 52.140702,
+        "lon": 11.646428
+    },
+    {
+        "building": 24,
+        "room": "019A",
+        "type": "restroom-male",
+        "lat": 52.140957,
+        "lon": 11.646924
+    },
+    {
+        "building": 24,
+        "room": 20,
+        "type": "restroom-male",
+        "lat": 52.140957,
+        "lon": 11.646924
+    },
+    {
+        "building": 24,
+        "room": 23,
+        "type": "restroom-accessible",
+        "lat": 52.140957,
+        "lon": 11.646924
+    },
+    {
+        "building": 24,
+        "room": 321,
+        "type": "restroom-male",
+        "lat": 52.140957,
+        "lon": 11.646924
+    },
+    {
+        "building": 25,
+        "room": 32,
+        "type": "restroom-male",
+        "lat": 52.140258,
+        "lon": 11.647152
+    },
+    {
+        "building": 25,
+        "room": 34,
+        "type": "changing-table",
+        "lat": 52.140258,
+        "lon": 11.647152
+    },
+    {
+        "building": 25,
+        "room": 34,
+        "type": "restroom-accessible",
+        "lat": 52.140258,
+        "lon": 11.647152
+    },
+    {
+        "building": 25,
+        "room": 132,
+        "type": "restroom-male",
+        "lat": 52.140258,
+        "lon": 11.647152
+    },
+    {
+        "building": 25,
+        "room": 232,
+        "type": "restroom-male",
+        "lat": 52.140258,
+        "lon": 11.647152
+    },
+    {
+        "building": 25,
+        "room": 332,
+        "type": "restroom-male",
+        "lat": 52.140258,
+        "lon": 11.647152
+    },
+    {
+        "building": 25,
+        "room": "K32",
+        "type": "restroom-male",
+        "lat": 52.140258,
+        "lon": 11.647152
+    },
+    {
+        "building": 26,
+        "room": 10,
+        "type": "restroom-accessible",
+        "lat": 52.139808,
+        "lon": 11.646994
+    },
+    {
+        "building": 26,
+        "room": 13,
+        "type": "restroom-male",
+        "lat": 52.139808,
+        "lon": 11.646994
+    },
+    {
+        "building": 26,
+        "room": 114,
+        "type": "menstrual-product",
+        "lat": 52.139808,
+        "lon": 11.646994
+    },
+    {
+        "building": "26. Jan",
+        "room": "K11",
+        "type": "restroom-male",
+        "lat": 52.139808,
+        "lon": 11.646994
+    },
+    {
+        "building": 27,
+        "room": 17,
+        "type": "restroom-male",
+        "lat": 52.139709,
+        "lon": 11.647485
+    },
+    {
+        "building": 27,
+        "room": 23,
+        "type": "restroom-accessible",
+        "lat": 52.139709,
+        "lon": 11.647485
+    },
+    {
+        "building": 27,
+        "room": 308,
+        "type": "restroom-male",
+        "lat": 52.139709,
+        "lon": 11.647485
+    },
+    {
+        "building": 27,
+        "room": 341,
+        "type": "restroom-male",
+        "lat": 52.139709,
+        "lon": 11.647485
+    },
+    {
+        "building": 27,
+        "room": "K35",
+        "type": "menstrual-product",
+        "lat": 52.139709,
+        "lon": 11.647485
+    },
+    {
+        "building": 27,
+        "room": "K36",
+        "type": "restroom-male",
+        "lat": 52.139709,
+        "lon": 11.647485
+    },
+    {
+        "building": 28,
+        "room": 31,
+        "type": "restroom-male",
+        "lat": 52.140659,
+        "lon": 11.647637
+    },
+    {
+        "building": 28,
+        "room": 123,
+        "type": "restroom-male",
+        "lat": 52.140659,
+        "lon": 11.647637
+    },
+    {
+        "building": 28,
+        "room": 222,
+        "type": "restroom-male",
+        "lat": 52.140659,
+        "lon": 11.647637
+    },
+    {
+        "building": 28,
+        "room": 323,
+        "type": "restroom-male",
+        "lat": 52.140659,
+        "lon": 11.647637
+    },
+    {
+        "building": 29,
+        "room": 4,
+        "type": "restroom-male",
+        "lat": 52.138913,
+        "lon": 11.645409
+    },
+    {
+        "building": 29,
+        "room": 30,
+        "type": "menstrual-product",
+        "lat": 52.138913,
+        "lon": 11.645409
+    },
+    {
+        "building": 29,
+        "room": 31,
+        "type": "restroom-male",
+        "lat": 52.138913,
+        "lon": 11.645409
+    },
+    {
+        "building": 29,
+        "room": 107,
+        "type": "restroom-male",
+        "lat": 52.138913,
+        "lon": 11.645409
+    },
+    {
+        "building": 29,
+        "room": 140,
+        "type": "restroom-male",
+        "lat": 52.138913,
+        "lon": 11.645409
+    },
+    {
+        "building": 29,
+        "room": 206,
+        "type": "restroom-male",
+        "lat": 52.138913,
+        "lon": 11.645409
+    },
+    {
+        "building": 29,
+        "room": 239,
+        "type": "restroom-male",
+        "lat": 52.138913,
+        "lon": 11.645409
+    },
+    {
+        "building": 29,
+        "room": 305,
+        "type": "restroom-male",
+        "lat": 52.138913,
+        "lon": 11.645409
+    },
+    {
+        "building": 29,
+        "room": 330,
+        "type": "restroom-male",
+        "lat": 52.138913,
+        "lon": 11.645409
+    },
+    {
+        "building": 29,
+        "room": 332,
+        "type": "restroom-accessible",
+        "lat": 52.138913,
+        "lon": 11.645409
+    },
+    {
+        "building": 29,
+        "room": 423,
+        "type": "restroom-male",
+        "lat": 52.138913,
+        "lon": 11.645409
+    },
+    {
+        "building": 30,
+        "room": 33,
+        "type": "restroom-male",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 30,
+        "room": 34,
+        "type": "restroom-male",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 30,
+        "room": 45,
+        "type": "restroom-accessible",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 30,
+        "room": 144,
+        "type": "menstrual-product",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 30,
+        "room": 151,
+        "type": "restroom-accessible",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 30,
+        "room": 229,
+        "type": "restroom-male",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 30,
+        "room": 241,
+        "type": "restroom-male",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 30,
+        "room": 347,
+        "type": "restroom-male",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 30,
+        "room": "K16",
+        "type": "restroom-male",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 30,
+        "room": "K17",
+        "type": "restroom-male",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 30,
+        "room": "K18",
+        "type": "restroom-accessible",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 30,
+        "room": "K69",
+        "type": "restroom-male",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 30,
+        "room": "K78",
+        "type": "menstrual-product",
+        "lat": 52.139048,
+        "lon": 11.646868
+    },
+    {
+        "building": 31,
+        "room": 4,
+        "type": "menstrual-product",
+        "lat": 52.140934,
+        "lon": 11.642217
+    },
+    {
+        "building": 31,
+        "room": 16,
+        "type": "restroom-accessible",
+        "lat": 52.140934,
+        "lon": 11.642217
+    },
+    {
+        "building": 32,
+        "room": 11,
+        "type": "restroom-male",
+        "lat": 52.141041,
+        "lon": 11.648415
+    },
+    {
+        "building": 32,
+        "room": 12,
+        "type": "restroom-accessible",
+        "lat": 52.141041,
+        "lon": 11.648415
+    },
+    {
+        "building": 40,
+        "room": 18,
+        "type": "menstrual-product",
+        "lat": 52.138164,
+        "lon": 11.633867
+    },
+    {
+        "building": 40,
+        "room": 246,
+        "type": "menstrual-product",
+        "lat": 52.138164,
+        "lon": 11.633867
+    },
+    {
+        "building": 40,
+        "room": "K61",
+        "type": "restroom-accessible",
+        "lat": 52.138164,
+        "lon": 11.633867
+    },
+    {
+        "building": 40,
+        "room": "K91B",
+        "type": "restroom-male",
+        "lat": 52.138164,
+        "lon": 11.633867
+    },
+    {
+        "building": 41,
+        "room": 6,
+        "type": "restroom-male",
+        "lat": 52.138848,
+        "lon": 11.632655
+    },
+    {
+        "building": 41,
+        "room": 12,
+        "type": "restroom-male",
+        "lat": 52.138848,
+        "lon": 11.632655
+    },
+    {
+        "building": 41,
+        "room": 16,
+        "type": "restroom-male",
+        "lat": 52.138848,
+        "lon": 11.632655
+    },
+    {
+        "building": 41,
+        "room": 35,
+        "type": "restroom-male",
+        "lat": 52.138848,
+        "lon": 11.632655
+    },
+    {
+        "building": 41,
+        "room": 48,
+        "type": "restroom-male",
+        "lat": 52.138848,
+        "lon": 11.632655
+    },
+    {
+        "building": 42,
+        "room": 12,
+        "type": "menstrual-product",
+        "lat": 52.138638,
+        "lon": 11.633685
+    },
+    {
+        "building": 42,
+        "room": "016A",
+        "type": "restroom-male",
+        "lat": 52.138638,
+        "lon": 11.633685
+    },
+    {
+        "building": 42,
+        "room": "017A",
+        "type": "restroom-male",
+        "lat": 52.138638,
+        "lon": 11.633685
+    },
+    {
+        "building": 42,
+        "room": 35,
+        "type": "restroom-accessible",
+        "lat": 52.138638,
+        "lon": 11.633685
+    },
+    {
+        "building": 42,
+        "room": "036A",
+        "type": "restroom-male",
+        "lat": 52.138638,
+        "lon": 11.633685
+    },
+    {
+        "building": 43,
+        "room": "007A",
+        "type": "restroom-male",
+        "lat": 52.137801,
+        "lon": 11.636311
+    },
+    {
+        "building": 43,
+        "room": "007B",
+        "type": "restroom-male",
+        "lat": 52.137801,
+        "lon": 11.636311
+    },
+    {
+        "building": 43,
+        "room": "207A",
+        "type": "restroom-male",
+        "lat": 52.137801,
+        "lon": 11.636311
+    },
+    {
+        "building": 43,
+        "room": "207B",
+        "type": "restroom-male",
+        "lat": 52.137801,
+        "lon": 11.636311
+    },
+    {
+        "building": 43,
+        "room": "305A",
+        "type": "restroom-male",
+        "lat": 52.137801,
+        "lon": 11.636311
+    },
+    {
+        "building": 43,
+        "room": "305B",
+        "type": "restroom-male",
+        "lat": 52.137801,
+        "lon": 11.636311
+    },
+    {
+        "building": 44,
+        "room": 7,
+        "type": "restroom-male",
+        "lat": 52.140455,
+        "lon": 11.640463
+    },
+    {
+        "building": 44,
+        "room": 9,
+        "type": "restroom-accessible",
+        "lat": 52.140455,
+        "lon": 11.640463
+    },
+    {
+        "building": 44,
+        "room": 10,
+        "type": "menstrual-product",
+        "lat": 52.140455,
+        "lon": 11.640463
+    },
+    {
+        "building": 50,
+        "room": "201A",
+        "type": "restroom-accessible",
+        "lat": 52.140455,
+        "lon": 11.640463
+    },
+    {
+        "building": 57,
+        "room": 8,
+        "type": "restroom-male",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": 61,
+        "room": 21,
+        "type": "restroom-male",
+        "lat": 52.140942,
+        "lon": 11.651441
+    },
+    {
+        "building": 82,
+        "room": 9,
+        "type": "restroom-male",
+        "lat": 52.140501,
+        "lon": 11.655389
+    },
+    {
+        "building": 82,
+        "room": 17,
+        "type": "restroom-accessible",
+        "lat": 52.140501,
+        "lon": 11.655389
+    },
+    {
+        "building": 82,
+        "room": 30,
+        "type": "restroom-male",
+        "lat": 52.140501,
+        "lon": 11.655389
+    },
+    {
+        "building": 82,
+        "room": 111,
+        "type": "restroom-male",
+        "lat": 52.140501,
+        "lon": 11.655389
+    },
+    {
+        "building": 82,
+        "room": 133,
+        "type": "restroom-male",
+        "lat": 52.140501,
+        "lon": 11.655389
+    },
+    {
+        "building": 86,
+        "room": 107,
+        "type": "restroom-male",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": 87,
+        "room": 18,
+        "type": "restroom-accessible",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": 87,
+        "room": "021A",
+        "type": "restroom-male",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": 91,
+        "room": 8,
+        "type": "restroom-male",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": 91,
+        "room": 16,
+        "type": "restroom-accessible",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": 91,
+        "room": 107,
+        "type": "restroom-male",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": 91,
+        "room": 208,
+        "type": "restroom-male",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": 92,
+        "room": "E0-009",
+        "type": "restroom-male",
+        "lat": null,
+        "lon": null
+    },
+    {
+        "building": 92,
+        "room": "E0-028",
+        "type": "restroom-accessible",
+        "lat": null,
+        "lon": null
+    }
+]
