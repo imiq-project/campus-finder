@@ -115,8 +115,8 @@ export default function App() {
       const center = map.getCenter();
       const mapConfig: MapConfig = {
         maxPitch: map.getMaxPitch(),
-        longitude: center.lng,
-        latitude: center.lat,
+        center: [center.lng, center.lat],
+        location: config.location,
         zoom: map.getZoom(),
         pitch: map.getPitch(),
         bearing: map.getBearing(),
@@ -162,7 +162,7 @@ export default function App() {
     routeController.current = controller;
 
     void loadRoute(
-      { lat: config.latitude, lon: config.longitude },
+      { lat: config.location[1], lon: config.location[0] },
       destination,
       controller.signal,
     )
@@ -227,7 +227,7 @@ export default function App() {
     setRouteLoading(false);
     setRouteError(null);
     mapRef.current?.getMap().easeTo({
-      center: [config.longitude, config.latitude],
+      center: config.center,
       zoom: config.zoom,
       pitch: config.pitch,
       bearing: config.bearing,
@@ -278,8 +278,8 @@ export default function App() {
     }
 
     const restroom = findNearestRestroom(rooms, {
-      lat: config.latitude,
-      lon: config.longitude,
+      lat: config.location[1],
+      lon: config.location[0],
     });
     if (!restroom || restroom.lat === null || restroom.lon === null) {
       showRouteError("restroomLocationsUnavailable");
@@ -301,8 +301,8 @@ export default function App() {
     }
 
     const room = findNearestRoomByTypePrefix(rooms, {
-      lat: config.latitude,
-      lon: config.longitude,
+      lat: config.location[1],
+      lon: config.location[0],
     }, "menstrual-product");
     if (!room || room.lat === null || room.lon === null) {
       showRouteError("periodProductsLocationsUnavailable");
@@ -324,8 +324,8 @@ export default function App() {
     }
 
     const room = findNearestRoomByTypePrefix(rooms, {
-      lat: config.latitude,
-      lon: config.longitude,
+      lat: config.location[1],
+      lon: config.location[0],
     }, "changing-table");
     if (!room || room.lat === null || room.lon === null) {
       showRouteError("changingTableLocationsUnavailable");
@@ -376,8 +376,8 @@ export default function App() {
 
     if (destinationParam === "restroom") {
       const room = findNearestRestroom(rooms, {
-        lat: config.latitude,
-        lon: config.longitude,
+        lat: config.location[1],
+        lon: config.location[0],
       });
       if (!room || room.lat === null || room.lon === null) {
         showRouteError("restroomLocationsUnavailable");
@@ -391,8 +391,8 @@ export default function App() {
       );
     } else if (destinationParam === "period-products") {
       const room = findNearestRoomByTypePrefix(rooms, {
-        lat: config.latitude,
-        lon: config.longitude,
+        lat: config.location[1],
+        lon: config.location[0],
       }, "menstrual-product");
       if (!room || room.lat === null || room.lon === null) {
         showRouteError("periodProductsLocationsUnavailable");
@@ -406,8 +406,8 @@ export default function App() {
       );
     } else {
       const room = findNearestRoomByTypePrefix(rooms, {
-        lat: config.latitude,
-        lon: config.longitude,
+        lat: config.location[1],
+        lon: config.location[0],
       }, "changing-table");
       if (!room || room.lat === null || room.lon === null) {
         showRouteError("changingTableLocationsUnavailable");
@@ -450,8 +450,8 @@ export default function App() {
           maxPitch={config.maxPitch}
           attributionControl={false}
           initialViewState={{
-            longitude: config.longitude,
-            latitude: config.latitude,
+            longitude: config.center[0],
+            latitude: config.center[1],
             zoom: config.zoom,
             pitch: config.pitch,
             bearing: config.bearing,
@@ -479,8 +479,8 @@ export default function App() {
             </Marker>
           ))}
           <Marker
-            longitude={config.longitude}
-            latitude={config.latitude}
+            longitude={config.location[0]}
+            latitude={config.location[1]}
             anchor="center"
           >
             <div
