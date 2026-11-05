@@ -182,7 +182,7 @@ export default function App() {
           {
             padding: 64,
             duration: 1000,
-            maxZoom: 17,
+            maxZoom: 20,
             bearing: mapRef.current?.getMap().getBearing() ?? config.bearing,
           },
         );
