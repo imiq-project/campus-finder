@@ -32,7 +32,7 @@ const isConfigName = (name: string): name is keyof typeof configs =>
   Object.prototype.hasOwnProperty.call(configs, name);
 
 export default function App() {
-  const requestedConfigName = new URLSearchParams(window.location.search).get("configName");
+  const requestedConfigName = new URLSearchParams(window.location.search).get("config");
   const config = requestedConfigName && isConfigName(requestedConfigName)
     ? configs[requestedConfigName]
     : configs.main;
@@ -466,6 +466,18 @@ export default function App() {
             });
           }}
         >
+          {buildings.map((building) => (
+            <Marker
+              key={building.name}
+              longitude={building.lon}
+              latitude={building.lat}
+              anchor="center"
+            >
+              <div className="building-map-label">
+                {building.localizedName(language)}
+              </div>
+            </Marker>
+          ))}
           <Marker
             longitude={config.longitude}
             latitude={config.latitude}

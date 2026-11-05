@@ -19,6 +19,20 @@
   flex-shrink: 0;
 }
 
+.building-map-label {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 0.35rem;
+  background: rgba(122, 0, 63, 0.85);
+  box-shadow: 0 1px 4px #0008;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 .destination-marker {
   position: relative;
 }
