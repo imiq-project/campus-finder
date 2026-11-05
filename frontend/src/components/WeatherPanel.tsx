@@ -71,6 +71,18 @@ export default function WeatherPanel({ language, onLanguageChange }: WeatherPane
   return (
     <div className="weather-panel" lang={language}>
       <Panel>
+        <a
+          className="weather-brand"
+          href="https://www.imr.ovgu.de/IMIQ.html"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="IMIQ – Intelligenter Mobilitätsraum im Quartier"
+        >
+          <span className="weather-brand-mark">IMIQ</span>
+          <span className="weather-brand-name">
+            Intelligenter Mobilitätsraum im Quartier
+          </span>
+        </a>
         {hasError ? (
           <p className="weather-message" role="alert">
             {translate(language, "weatherLoadError")}
