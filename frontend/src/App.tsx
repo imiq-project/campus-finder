@@ -8,10 +8,18 @@ import { findNearestRestroom, findNearestRoomByTypePrefix, loadRooms, type Room 
 import { loadRoute, type RouteFeature } from "./models/Route.ts";
 import { Baby, Droplets, Ellipsis, House, Toilet, X } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
+import {
+  getInitialLanguage,
+  localizeDestination,
+  translate,
+  type Language,
+  type TranslationKey,
+} from "./i18n.ts";
 import './App.css'
 import configs from "./assets/configs.json"
 
 type MapConfig = typeof configs.main;
+type LocalizedMessage = { key: TranslationKey; values?: { name?: string } };
 
 declare global {
   interface Window {
@@ -31,6 +39,7 @@ export default function App() {
     new URLSearchParams(window.location.search).get("destination"),
   );
   const destinationRestored = useRef(false);
+  const [language, setLanguage] = useState<Language>(getInitialLanguage);
   const [buildings, setBuildings] = useState<Building[]>([]);
   const [buildingsLoaded, setBuildingsLoaded] = useState(false);
   const [rooms, setRooms] = useState<Room[]>([]);
@@ -40,13 +49,28 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [route, setRoute] = useState<RouteFeature | null>(null);
   const [routeLoading, setRouteLoading] = useState(false);
-  const [routeError, setRouteError] = useState<string | null>(null);
+  const [routeError, setRouteError] = useState<LocalizedMessage | null>(null);
   const [roomsError, setRoomsError] = useState<string | null>(null);
   const [buildingsError, setBuildingsError] = useState<string | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const mapRef = useRef<MapRef>(null);
   const routeRequestId = useRef(0);
   const routeController = useRef<AbortController | null>(null);
+
+  const changeLanguage = (nextLanguage: Language) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", nextLanguage);
+    window.history.replaceState(window.history.state, "", url);
+    setLanguage(nextLanguage);
+  };
+
+  const showRouteError = useCallback((key: TranslationKey, values?: { name?: string }) => {
+    setRouteError({ key, values });
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
 
   useEffect(() => {
     void loadBuildings()
@@ -124,7 +148,7 @@ export default function App() {
     setRouteError(null);
     setRouteLoading(true);
 
-    const fail = (message: string) => {
+    const fail = (message: LocalizedMessage) => {
       if (routeRequestId.current === requestId) {
         setRouteLoading(false);
         setRouteError(message);
@@ -164,7 +188,8 @@ export default function App() {
       })
       .catch((error: unknown) => {
         if (controller.signal.aborted) return;
-        fail(error instanceof Error ? error.message : "Failed to load the route.");
+        console.error("Failed to load the route:", error);
+        fail({ key: "routeLoadError" });
       });
   }, [config]);
 
@@ -195,7 +220,7 @@ export default function App() {
 
   const selectNearestRestroom = () => {
     if (roomsError) {
-      setRouteError(roomsError);
+      showRouteError("roomsLoadError");
       return;
     }
 
@@ -204,7 +229,7 @@ export default function App() {
       lon: config.longitude,
     });
     if (!restroom || restroom.lat === null || restroom.lon === null) {
-      setRouteError("No restroom locations with coordinates are available.");
+      showRouteError("restroomLocationsUnavailable");
       return;
     }
 
@@ -218,7 +243,7 @@ export default function App() {
 
   const selectNearestPeriodProduct = () => {
     if (roomsError) {
-      setRouteError(roomsError);
+      showRouteError("roomsLoadError");
       return;
     }
 
@@ -227,7 +252,7 @@ export default function App() {
       lon: config.longitude,
     }, "menstrual-product");
     if (!room || room.lat === null || room.lon === null) {
-      setRouteError("No period-product locations with coordinates are available.");
+      showRouteError("periodProductsLocationsUnavailable");
       return;
     }
 
@@ -241,7 +266,7 @@ export default function App() {
 
   const selectNearestChangingTable = () => {
     if (roomsError) {
-      setRouteError(roomsError);
+      showRouteError("roomsLoadError");
       return;
     }
 
@@ -250,7 +275,7 @@ export default function App() {
       lon: config.longitude,
     }, "changing-table");
     if (!room || room.lat === null || room.lon === null) {
-      setRouteError("No changing-table locations with coordinates are available.");
+      showRouteError("changingTableLocationsUnavailable");
       return;
     }
 
@@ -270,13 +295,13 @@ export default function App() {
       if (!buildingsLoaded) return;
       destinationRestored.current = true;
       if (buildingsError) {
-        setRouteError(buildingsError);
+        showRouteError("buildingLoadError");
         return;
       }
 
       const building = buildings.find(({ name }) => name === destinationParam);
       if (!building) {
-        setRouteError(`Building "${destinationParam}" was not found.`);
+        showRouteError("buildingNotFound", { name: destinationParam });
         return;
       }
       navigateTo(
@@ -292,7 +317,7 @@ export default function App() {
     destinationRestored.current = true;
 
     if (roomsError) {
-      setRouteError(roomsError);
+      showRouteError("roomsLoadError");
       return;
     }
 
@@ -302,7 +327,7 @@ export default function App() {
         lon: config.longitude,
       });
       if (!room || room.lat === null || room.lon === null) {
-        setRouteError("No restroom locations with coordinates are available.");
+        showRouteError("restroomLocationsUnavailable");
         return;
       }
       navigateTo(
@@ -317,7 +342,7 @@ export default function App() {
         lon: config.longitude,
       }, "menstrual-product");
       if (!room || room.lat === null || room.lon === null) {
-        setRouteError("No period-product locations with coordinates are available.");
+        showRouteError("periodProductsLocationsUnavailable");
         return;
       }
       navigateTo(
@@ -332,7 +357,7 @@ export default function App() {
         lon: config.longitude,
       }, "changing-table");
       if (!room || room.lat === null || room.lon === null) {
-        setRouteError("No changing-table locations with coordinates are available.");
+        showRouteError("changingTableLocationsUnavailable");
         return;
       }
       navigateTo(
@@ -342,7 +367,7 @@ export default function App() {
         destinationParam,
       );
     }
-  }, [buildings, buildingsError, buildingsLoaded, config, mapLoaded, navigateTo, rooms, roomsError, roomsLoaded]);
+  }, [buildings, buildingsError, buildingsLoaded, config, language, mapLoaded, navigateTo, rooms, roomsError, roomsLoaded, showRouteError]);
 
   const openMenu = () => setIsMenuOpen((isOpen) => !isOpen);
   const routeEnd = route?.geometry.coordinates.at(-1);
@@ -363,8 +388,8 @@ export default function App() {
   })();
 
   return (
-    <>
-      <WeatherPanel />
+    <div lang={language}>
+      <WeatherPanel language={language} onLanguageChange={changeLanguage} />
       <div style={{ width: "100%", height: "100vh" }}>
         <Map
           ref={mapRef}
@@ -394,8 +419,8 @@ export default function App() {
           >
             <div
               role="img"
-              aria-label="Route start"
-              title="Route start"
+              aria-label={translate(language, "routeStart")}
+              title={translate(language, "routeStart")}
               style={{
                 width: 18,
                 height: 18,
@@ -426,12 +451,12 @@ export default function App() {
                     <div className="destination-qr">
                       <div className="destination-qr-heading">
                         <span className="destination-qr-destination">
-                          {selectedDestination ?? "Route end"}
+                          {selectedDestination ? localizeDestination(selectedDestination, language, buildings) : translate(language, "routeEnd")}
                         </span>
                         <button
                           type="button"
                           className="destination-popup-close"
-                          aria-label="Close route"
+                          aria-label={translate(language, "closeRoute")}
                           onClick={clearRoute}
                         >
                           <X aria-hidden="true" />
@@ -443,14 +468,14 @@ export default function App() {
                         level="M"
                         bgColor="transparent"
                         fgColor="white"
-                        title="Scan to open this destination on your phone"
+                        title={translate(language, "qrTitle")}
                       />
                     </div>
                   </Panel>
                   <div
                     role="img"
-                    aria-label={selectedDestination ?? "Route end"}
-                    title={selectedDestination ?? "Route end"}
+                    aria-label={selectedDestination ? localizeDestination(selectedDestination, language, buildings) : translate(language, "routeEnd")}
+                    title={selectedDestination ? localizeDestination(selectedDestination, language, buildings) : translate(language, "routeEnd")}
                     className="destination-marker-dot"
                   />
                 </div>
@@ -475,7 +500,7 @@ export default function App() {
       >
         <div className="building-title">
           <Droplets aria-hidden="true" />
-          <span>Period products</span>
+          <span>{translate(language, "periodProducts")}</span>
         </div>
       </Panel>
       <Panel
@@ -484,7 +509,7 @@ export default function App() {
       >
         <div className="building-title">
           <Baby aria-hidden="true" />
-          <span>Changing table</span>
+          <span>{translate(language, "changingTable")}</span>
         </div>
       </Panel>
       {buildings.slice(0, 5).map((building) => (
@@ -495,19 +520,20 @@ export default function App() {
         >
           <div className="building-title">
             <House aria-hidden="true" />
-            <span>{building.name}</span>
+            <span>{building.localizedName(language)}</span>
           </div>
         </Panel>
       ))}
       <Panel className="m-2 cursor-pointer" onClick={openMenu}>
         <Ellipsis aria-hidden="true" />
-        <span className="sr-only">Show all buildings</span>
+        <span className="sr-only">{translate(language, "openBuildingList")}</span>
       </Panel>
     </div>
     {isMenuOpen && (
       <BuildingMenu
         buildings={buildings}
         selectedBuilding={selectedBuilding}
+        language={language}
         onSelect={(building) => {
           setIsMenuOpen(false);
           selectBuilding(building);
@@ -518,10 +544,12 @@ export default function App() {
     {(routeLoading || routeError) && (
       <div style={{ position: "absolute", left: "0", bottom: "0" }}>
         <Panel className="m-2">
-          {routeLoading ? "Loading route..." : routeError}
+          {routeLoading
+            ? translate(language, "loadingRoute")
+            : routeError && translate(language, routeError.key, routeError.values)}
         </Panel>
       </div>
     )}
-    </>
+    </div>
   )
 }

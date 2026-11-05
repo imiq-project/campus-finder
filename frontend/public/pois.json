@@ -1,0 +1,1187 @@
+[
+    {
+        "name": "Campus-Welcome-Center",
+        "name_en": "Campus Welcome Center",
+        "lat": 52.140455,
+        "lon": 11.640463,
+        "OSM_id": 1212503403,
+        "rooms": [
+            {
+                "room": "25",
+                "type": "changing-table"
+            },
+            {
+                "room": "25",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "25",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "27",
+                "type": "restroom-male"
+            },
+            {
+                "room": "37",
+                "type": "restroom-male"
+            },
+            {
+                "room": "113",
+                "type": "restroom-male"
+            },
+            {
+                "room": "125",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "206",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 02",
+        "name_en": "Building 02",
+        "lat": 52.140495,
+        "lon": 11.640412,
+        "OSM_id": 30838885,
+        "rooms": [
+            {
+                "room": "26",
+                "type": "restroom-male"
+            },
+            {
+                "room": "115",
+                "type": "changing-table"
+            },
+            {
+                "room": "118",
+                "type": "restroom-male"
+            },
+            {
+                "room": "228",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "230",
+                "type": "restroom-male"
+            },
+            {
+                "room": "308",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 03",
+        "name_en": "Building 03",
+        "lat": 52.141239,
+        "lon": 11.640766,
+        "OSM_id": 30838883,
+        "rooms": [
+            {
+                "room": "3",
+                "type": "restroom-male"
+            },
+            {
+                "room": "003A",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "32",
+                "type": "restroom-male"
+            },
+            {
+                "room": "127",
+                "type": "restroom-male"
+            },
+            {
+                "room": "203",
+                "type": "restroom-male"
+            },
+            {
+                "room": "229",
+                "type": "restroom-male"
+            },
+            {
+                "room": "304",
+                "type": "restroom-male"
+            },
+            {
+                "room": "304",
+                "type": "changing-table"
+            },
+            {
+                "room": "320",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 04",
+        "name_en": "Building 04",
+        "lat": 52.140872,
+        "lon": 11.641265,
+        "OSM_id": 30838882,
+        "rooms": []
+    },
+    {
+        "name": "Gebäude 05",
+        "name_en": "Building 05",
+        "lat": 52.14047,
+        "lon": 11.641155,
+        "OSM_id": 30838619,
+        "rooms": [
+            {
+                "room": "111A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "112B",
+                "type": "restroom-accessible"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 06",
+        "name_en": "Building 06",
+        "lat": 52.139986,
+        "lon": 11.641023,
+        "OSM_id": 30838617,
+        "rooms": []
+    },
+    {
+        "name": "Gebäude 07",
+        "name_en": "Building 07",
+        "lat": 52.139706,
+        "lon": 11.641034,
+        "OSM_id": 30838618,
+        "rooms": [
+            {
+                "room": "203C",
+                "type": "restroom-male"
+            },
+            {
+                "room": "K07C",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 08 - Studierendenhaus",
+        "name_en": "Building 08 - Student House",
+        "lat": 52.139614,
+        "lon": 11.6437,
+        "OSM_id": 1501704303,
+        "rooms": [
+            {
+                "room": "4",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "8",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 09",
+        "name_en": "Building 09",
+        "lat": 52.139192,
+        "lon": 11.640953,
+        "OSM_id": 30838607,
+        "rooms": [
+            {
+                "room": "35",
+                "type": "restroom-male"
+            },
+            {
+                "room": "36",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "139",
+                "type": "restroom-male"
+            },
+            {
+                "room": "235",
+                "type": "restroom-male"
+            },
+            {
+                "room": "335",
+                "type": "restroom-male"
+            },
+            {
+                "room": "435",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 10",
+        "name_en": "Building 10",
+        "lat": 52.139166,
+        "lon": 11.64241,
+        "OSM_id": 30838608,
+        "rooms": [
+            {
+                "room": "006A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "028A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "106",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "107A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "113",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "128A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "207A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "230A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "308A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "318",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "331A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "405A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "430A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "K05A",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 11",
+        "name_en": "Building 11",
+        "lat": 52.13968,
+        "lon": 11.642533,
+        "OSM_id": 295467494,
+        "rooms": []
+    },
+    {
+        "name": "Gebäude 11.1",
+        "name_en": "Building 11.1",
+        "lat": 52.139513,
+        "lon": 11.643003,
+        "OSM_id": 295467495,
+        "rooms": []
+    },
+    {
+        "name": "Gebäude 11.2",
+        "name_en": "Building 11.2",
+        "lat": 52.139632,
+        "lon": 11.642115,
+        "OSM_id": 295467493,
+        "rooms": [
+            {
+                "room": "112",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 12",
+        "name_en": "Building 12",
+        "lat": 52.140269,
+        "lon": 11.642187,
+        "OSM_id": 30838616,
+        "rooms": [
+            {
+                "room": "1",
+                "type": "restroom-male"
+            },
+            {
+                "room": "17",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "120",
+                "type": "restroom-male"
+            },
+            {
+                "room": "203",
+                "type": "restroom-male"
+            },
+            {
+                "room": "K06",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 13",
+        "name_en": "Building 13",
+        "lat": 52.140496,
+        "lon": 11.642126,
+        "OSM_id": 165409459,
+        "rooms": [
+            {
+                "room": "14",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 14",
+        "name_en": "Building 14",
+        "lat": 52.140934,
+        "lon": 11.642217,
+        "OSM_id": 6954776,
+        "rooms": []
+    },
+    {
+        "name": "Gebäude 15",
+        "name_en": "Building 15",
+        "lat": 52.140993,
+        "lon": 11.643941,
+        "OSM_id": 30838889,
+        "rooms": [
+            {
+                "room": "4",
+                "type": "restroom-male"
+            },
+            {
+                "room": "31",
+                "type": "restroom-male"
+            },
+            {
+                "room": "K37",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 16",
+        "name_en": "Building 16",
+        "lat": 52.140318,
+        "lon": 11.643885,
+        "OSM_id": 1466902,
+        "rooms": [
+            {
+                "room": "10",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "13",
+                "type": "restroom-male"
+            },
+            {
+                "room": "25",
+                "type": "restroom-male"
+            },
+            {
+                "room": "69",
+                "type": "restroom-male"
+            },
+            {
+                "room": "72",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "119",
+                "type": "restroom-male"
+            },
+            {
+                "room": "130",
+                "type": "restroom-male"
+            },
+            {
+                "room": "166",
+                "type": "restroom-male"
+            },
+            {
+                "room": "213",
+                "type": "restroom-male"
+            },
+            {
+                "room": "225",
+                "type": "restroom-male"
+            },
+            {
+                "room": "260",
+                "type": "restroom-male"
+            },
+            {
+                "room": "K47",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 18",
+        "name_en": "Building 18",
+        "lat": 52.13913,
+        "lon": 11.644746,
+        "OSM_id": 30838612,
+        "rooms": [
+            {
+                "room": "112",
+                "type": "changing-table"
+            },
+            {
+                "room": "112",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "214",
+                "type": "restroom-male"
+            },
+            {
+                "room": "310",
+                "type": "restroom-male"
+            },
+            {
+                "room": "410",
+                "type": "restroom-male"
+            },
+            {
+                "room": "510",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 19.1 - Poststelle",
+        "name_en": "Building 19.1 - Mail Room",
+        "lat": 52.140155,
+        "lon": 11.644765,
+        "OSM_id": 1546800079,
+        "rooms": []
+    },
+    {
+        "name": "Gebäude 19",
+        "name_en": "Building 19",
+        "lat": 52.140272,
+        "lon": 11.644778,
+        "OSM_id": 30838615,
+        "rooms": []
+    },
+    {
+        "name": "Gebäude 20",
+        "name_en": "Building 20",
+        "lat": 52.140616,
+        "lon": 11.644958,
+        "OSM_id": 30838891,
+        "rooms": []
+    },
+    {
+        "name": "Vilfredo-Pareto-Gebäude G22",
+        "name_en": "Vilfredo Pareto Building G22",
+        "lat": 52.140193,
+        "lon": 11.645789,
+        "OSM_id": 27349291,
+        "rooms": [
+            {
+                "room": "7",
+                "type": "changing-table"
+            },
+            {
+                "room": "7",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "10",
+                "type": "restroom-male"
+            },
+            {
+                "room": "17",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "5",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "203",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 23",
+        "name_en": "Building 23",
+        "lat": 52.140702,
+        "lon": 11.646428,
+        "OSM_id": 30885731,
+        "rooms": [
+            {
+                "room": "21",
+                "type": "restroom-male"
+            },
+            {
+                "room": "121",
+                "type": "restroom-male"
+            },
+            {
+                "room": "224",
+                "type": "restroom-male"
+            },
+            {
+                "room": "321",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 24",
+        "name_en": "Building 24",
+        "lat": 52.140957,
+        "lon": 11.646924,
+        "OSM_id": 30885730,
+        "rooms": [
+            {
+                "room": "019A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "20",
+                "type": "restroom-male"
+            },
+            {
+                "room": "23",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "321",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 25",
+        "name_en": "Building 25",
+        "lat": 52.140258,
+        "lon": 11.647152,
+        "OSM_id": 34258614,
+        "rooms": [
+            {
+                "room": "32",
+                "type": "restroom-male"
+            },
+            {
+                "room": "34",
+                "type": "changing-table"
+            },
+            {
+                "room": "34",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "132",
+                "type": "restroom-male"
+            },
+            {
+                "room": "232",
+                "type": "restroom-male"
+            },
+            {
+                "room": "332",
+                "type": "restroom-male"
+            },
+            {
+                "room": "K32",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 26 - Hörsaal 1",
+        "name_en": "Building 26 - Lecture Hall 1",
+        "lat": 52.13977,
+        "lon": 11.646444,
+        "OSM_id": 255948982,
+        "rooms": []
+    },
+    {
+        "name": "Gebäude 26.1 - Universitätsrechenzentrum",
+        "name_en": "Building 26.1 - University Computing Center",
+        "lat": 52.139808,
+        "lon": 11.646994,
+        "OSM_id": 255948983,
+        "rooms": [
+            {
+                "room": "10",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "13",
+                "type": "restroom-male"
+            },
+            {
+                "room": "114",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "K11",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 27 - Mensa",
+        "name_en": "Building 27 - Cafeteria (Mensa)",
+        "lat": 52.139709,
+        "lon": 11.647485,
+        "OSM_id": 25937647,
+        "rooms": [
+            {
+                "room": "17",
+                "type": "restroom-male"
+            },
+            {
+                "room": "23",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "308",
+                "type": "restroom-male"
+            },
+            {
+                "room": "341",
+                "type": "restroom-male"
+            },
+            {
+                "room": "K35",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "K36",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 28",
+        "name_en": "Building 28",
+        "lat": 52.140659,
+        "lon": 11.647637,
+        "OSM_id": 127386134,
+        "rooms": [
+            {
+                "room": "31",
+                "type": "restroom-male"
+            },
+            {
+                "room": "123",
+                "type": "restroom-male"
+            },
+            {
+                "room": "222",
+                "type": "restroom-male"
+            },
+            {
+                "room": "323",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Ada-Lovelace-Gebäude G29",
+        "name_en": "Ada Lovelace Building G29",
+        "lat": 52.138913,
+        "lon": 11.645409,
+        "OSM_id": 34286108,
+        "rooms": [
+            {
+                "room": "4",
+                "type": "restroom-male"
+            },
+            {
+                "room": "30",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "31",
+                "type": "restroom-male"
+            },
+            {
+                "room": "107",
+                "type": "restroom-male"
+            },
+            {
+                "room": "140",
+                "type": "restroom-male"
+            },
+            {
+                "room": "206",
+                "type": "restroom-male"
+            },
+            {
+                "room": "239",
+                "type": "restroom-male"
+            },
+            {
+                "room": "305",
+                "type": "restroom-male"
+            },
+            {
+                "room": "330",
+                "type": "restroom-male"
+            },
+            {
+                "room": "332",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "423",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 30 - Universitätsbibliothek",
+        "name_en": "Building 30 - University Library",
+        "lat": 52.139048,
+        "lon": 11.646868,
+        "OSM_id": 34258613,
+        "rooms": [
+            {
+                "room": "33",
+                "type": "restroom-male"
+            },
+            {
+                "room": "34",
+                "type": "restroom-male"
+            },
+            {
+                "room": "45",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "144",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "151",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "229",
+                "type": "restroom-male"
+            },
+            {
+                "room": "241",
+                "type": "restroom-male"
+            },
+            {
+                "room": "347",
+                "type": "restroom-male"
+            },
+            {
+                "room": "K16",
+                "type": "restroom-male"
+            },
+            {
+                "room": "K17",
+                "type": "restroom-male"
+            },
+            {
+                "room": "K18",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "K69",
+                "type": "restroom-male"
+            },
+            {
+                "room": "K78",
+                "type": "menstrual-product"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 31",
+        "name_en": "Building 31",
+        "lat": 52.140934,
+        "lon": 11.642217,
+        "OSM_id": 25937720,
+        "rooms": [
+            {
+                "room": "4",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "16",
+                "type": "restroom-accessible"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 32",
+        "name_en": "Building 32",
+        "lat": 52.141041,
+        "lon": 11.648415,
+        "OSM_id": 35032266,
+        "rooms": [
+            {
+                "room": "11",
+                "type": "restroom-male"
+            },
+            {
+                "room": "12",
+                "type": "restroom-accessible"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 40",
+        "name_en": "Building 40",
+        "lat": 52.138164,
+        "lon": 11.633867,
+        "OSM_id": 23855834,
+        "rooms": [
+            {
+                "room": "18",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "246",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "K61",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "K91B",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 41 - Sporthalle 1",
+        "name_en": "Building 41 - Sports Hall 1",
+        "lat": 52.138848,
+        "lon": 11.632655,
+        "OSM_id": 26356740,
+        "rooms": [
+            {
+                "room": "6",
+                "type": "restroom-male"
+            },
+            {
+                "room": "12",
+                "type": "restroom-male"
+            },
+            {
+                "room": "16",
+                "type": "restroom-male"
+            },
+            {
+                "room": "35",
+                "type": "restroom-male"
+            },
+            {
+                "room": "48",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 42 - Sporthalle 1",
+        "name_en": "Building 42 - Sports Hall 1",
+        "lat": 52.138638,
+        "lon": 11.633685,
+        "OSM_id": 165409457,
+        "rooms": [
+            {
+                "room": "12",
+                "type": "menstrual-product"
+            },
+            {
+                "room": "016A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "017A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "35",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "036A",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 43",
+        "name_en": "Building 43",
+        "lat": 52.137801,
+        "lon": 11.636311,
+        "OSM_id": 34300875,
+        "rooms": [
+            {
+                "room": "007A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "007B",
+                "type": "restroom-male"
+            },
+            {
+                "room": "207A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "207B",
+                "type": "restroom-male"
+            },
+            {
+                "room": "305A",
+                "type": "restroom-male"
+            },
+            {
+                "room": "305B",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 44 - Hörsaal 6",
+        "name_en": "Building 44 - Lecture Hall 6",
+        "lat": 52.140455,
+        "lon": 11.640463,
+        "OSM_id": 186750225,
+        "rooms": [
+            {
+                "room": "7",
+                "type": "restroom-male"
+            },
+            {
+                "room": "9",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "10",
+                "type": "menstrual-product"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 50",
+        "name_en": "Building 50",
+        "lat": 52.140455,
+        "lon": 11.640463,
+        "OSM_id": 32009643,
+        "rooms": [
+            {
+                "room": "201A",
+                "type": "restroom-accessible"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 60",
+        "name_en": "Building 60",
+        "lat": 52.141272,
+        "lon": 11.651945,
+        "OSM_id": 129019460,
+        "rooms": []
+    },
+    {
+        "name": "Gebäude 61",
+        "name_en": "Building 61",
+        "lat": 52.140942,
+        "lon": 11.651441,
+        "OSM_id": 129019449,
+        "rooms": [
+            {
+                "room": "21",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Gebäude 80",
+        "name_en": "Building 80",
+        "lat": 52.14135151753916,
+        "lon": 11.654969589885253,
+        "OSM_id": 132731609,
+        "rooms": []
+    },
+    {
+        "name": "Gebäude 81",
+        "name_en": "Building 81",
+        "lat": 52.146206,
+        "lon": 11.66158,
+        "OSM_id": 132730805,
+        "rooms": []
+    },
+    {
+        "name": "Gebäude 82",
+        "name_en": "Building 82",
+        "lat": 52.140501,
+        "lon": 11.655389,
+        "OSM_id": 877508575,
+        "rooms": [
+            {
+                "room": "9",
+                "type": "restroom-male"
+            },
+            {
+                "room": "17",
+                "type": "restroom-accessible"
+            },
+            {
+                "room": "30",
+                "type": "restroom-male"
+            },
+            {
+                "room": "111",
+                "type": "restroom-male"
+            },
+            {
+                "room": "133",
+                "type": "restroom-male"
+            }
+        ]
+    },
+    {
+        "name": "Wohnheim 1",
+        "name_en": "Dormitory 1",
+        "lat": 52.14061,
+        "lon": 11.648311,
+        "OSM_id": 635556499,
+        "rooms": []
+    },
+    {
+        "name": "Wohnheim 2",
+        "name_en": "Dormitory 2",
+        "lat": 52.140658,
+        "lon": 11.649153,
+        "OSM_id": 34286686,
+        "rooms": []
+    },
+    {
+        "name": "Wohnheim 3",
+        "name_en": "Dormitory 3",
+        "lat": 52.140802,
+        "lon": 11.649971,
+        "OSM_id": 34286687,
+        "rooms": []
+    },
+    {
+        "name": "Wohnheim 4",
+        "name_en": "Dormitory 4",
+        "lat": 52.139188,
+        "lon": 11.648177,
+        "OSM_id": 34286685,
+        "rooms": []
+    },
+    {
+        "name": "Wohnheim 5",
+        "name_en": "Dormitory 5",
+        "lat": 52.139141,
+        "lon": 11.648973,
+        "OSM_id": 34286683,
+        "rooms": []
+    },
+    {
+        "name": "Wohnheim 6",
+        "name_en": "Dormitory 6",
+        "lat": 52.139178,
+        "lon": 11.649628,
+        "OSM_id": 34286684,
+        "rooms": []
+    },
+    {
+        "name": "Wohnheim 7",
+        "name_en": "Dormitory 7",
+        "lat": 52.139913,
+        "lon": 11.650524,
+        "OSM_id": 34286102,
+        "rooms": []
+    },
+    {
+        "name": "Wohnheim 9",
+        "name_en": "Dormitory 9",
+        "lat": 52.138661,
+        "lon": 11.648912,
+        "OSM_id": 34286110,
+        "rooms": []
+    },
+    {
+        "name": "Wohnheim 10a",
+        "name_en": "Dormitory 10a",
+        "lat": 52.138964,
+        "lon": 11.636214,
+        "OSM_id": 412145757,
+        "rooms": []
+    },
+    {
+        "name": "Wohnheim 10b",
+        "name_en": "Dormitory 10b",
+        "lat": 52.1390024,
+        "lon": 11.6366314,
+        "OSM_id": 412145758,
+        "rooms": []
+    },
+    {
+        "name": "JoGo Studibar + Eventspace (ehemals CampusTheater)",
+        "name_en": "JoGo Student Bar + Event Space (formerly Campus Theater)",
+        "lat": 52.139548,
+        "lon": 11.650915,
+        "OSM_id": 34286101,
+        "rooms": []
+    },
+    {
+        "name": "Campus House",
+        "name_en": "Campus House",
+        "lat": 52.141285,
+        "lon": 11.649225,
+        "OSM_id": 35032267,
+        "rooms": []
+    },
+    {
+        "name": "Campus Tower",
+        "name_en": "Campus Tower",
+        "lat": 52.139398,
+        "lon": 11.6405621,
+        "OSM_id": 103483365,
+        "rooms": []
+    },
+    {
+        "name": "Unitheke",
+        "name_en": "Unitheke",
+        "lat": 52.1392861,
+        "lon": 11.6404443,
+        "OSM_id": 1477668700,
+        "rooms": []
+    }
+]

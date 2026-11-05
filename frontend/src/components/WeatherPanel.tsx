@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { CloudRain, CloudSun } from "lucide-react";
 import Panel from "./Panel.tsx";
+import { translate, type Language } from "../i18n.ts";
 import "./WeatherPanel.css";
 
 const WEATHER_URL =
@@ -44,9 +45,14 @@ async function loadWeather(signal: AbortSignal): Promise<Weather> {
   };
 }
 
-export default function WeatherPanel() {
+interface WeatherPanelProps {
+  language: Language;
+  onLanguageChange: (language: Language) => void;
+}
+
+export default function WeatherPanel({ language, onLanguageChange }: WeatherPanelProps) {
   const [weather, setWeather] = useState<Weather | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -54,7 +60,8 @@ export default function WeatherPanel() {
       .then(setWeather)
       .catch((reason: unknown) => {
         if (!controller.signal.aborted) {
-          setError(reason instanceof Error ? reason.message : "Failed to load weather.");
+          console.error("Failed to load weather:", reason);
+          setHasError(true);
         }
       });
 
@@ -62,22 +69,48 @@ export default function WeatherPanel() {
   }, []);
 
   return (
-    <div className="weather-panel">
+    <div className="weather-panel" lang={language}>
       <Panel>
-        {error ? (
-          <p className="weather-message" role="alert">{error}</p>
+        {hasError ? (
+          <p className="weather-message" role="alert">
+            {translate(language, "weatherLoadError")}
+          </p>
         ) : weather ? (
           <div className="weather-summary">
             {weather.rainIntensity > 0 ? (
-              <CloudRain role="img" aria-label="Rain" />
+              <CloudRain role="img" aria-label={translate(language, "rain")} />
             ) : (
-              <CloudSun role="img" aria-label="No rain" />
+              <CloudSun role="img" aria-label={translate(language, "dry")} />
             )}
             <span>{weather.temperature}°C</span>
           </div>
         ) : (
-          <p className="weather-message" role="status">Loading weather...</p>
+          <p className="weather-message" role="status">
+            {translate(language, "loadingWeather")}
+          </p>
         )}
+        <div
+          className="weather-language-toggle"
+          role="group"
+          aria-label={translate(language, "language")}
+        >
+          <button
+            type="button"
+            aria-label="Deutsch"
+            aria-pressed={language === "de"}
+            onClick={() => onLanguageChange("de")}
+          >
+            DE
+          </button>
+          <button
+            type="button"
+            aria-label="English"
+            aria-pressed={language === "en"}
+            onClick={() => onLanguageChange("en")}
+          >
+            EN
+          </button>
+        </div>
       </Panel>
     </div>
   );

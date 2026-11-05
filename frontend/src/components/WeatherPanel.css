@@ -7,6 +7,33 @@
   margin: 0.5rem;
 }
 
+.weather-language-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.weather-language-toggle button {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0.35rem;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.weather-language-toggle button[aria-pressed="true"] {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.weather-language-toggle button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
 .weather-summary {
   display: flex;
   align-items: center;
