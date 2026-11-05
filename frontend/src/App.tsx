@@ -227,7 +227,7 @@ export default function App() {
     setRouteLoading(false);
     setRouteError(null);
     mapRef.current?.getMap().easeTo({
-      center: config.center,
+      center: [config.center[0], config.center[1]],
       zoom: config.zoom,
       pitch: config.pitch,
       bearing: config.bearing,
