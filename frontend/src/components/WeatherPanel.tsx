@@ -6,6 +6,7 @@ import "./WeatherPanel.css";
 
 const WEATHER_URL =
   "https://imiq-public.et.uni-magdeburg.de/api/orion/entities/Sensor:Weather:Winfred";
+const WEATHER_REFRESH_INTERVAL = 30 * 60 * 1000;
 
 interface Weather {
   temperature: number;
@@ -56,16 +57,27 @@ export default function WeatherPanel({ language, onLanguageChange }: WeatherPane
 
   useEffect(() => {
     const controller = new AbortController();
-    void loadWeather(controller.signal)
-      .then(setWeather)
-      .catch((reason: unknown) => {
-        if (!controller.signal.aborted) {
-          console.error("Failed to load weather:", reason);
-          setHasError(true);
-        }
-      });
+    const fetchWeather = () => {
+      void loadWeather(controller.signal)
+        .then((nextWeather) => {
+          setWeather(nextWeather);
+          setHasError(false);
+        })
+        .catch((reason: unknown) => {
+          if (!controller.signal.aborted) {
+            console.error("Failed to load weather:", reason);
+            setHasError(true);
+          }
+        });
+    };
 
-    return () => controller.abort();
+    fetchWeather();
+    const intervalId = window.setInterval(fetchWeather, WEATHER_REFRESH_INTERVAL);
+
+    return () => {
+      window.clearInterval(intervalId);
+      controller.abort();
+    };
   }, []);
 
   return (

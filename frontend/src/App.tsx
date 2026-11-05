@@ -20,6 +20,7 @@ import configs from "./assets/configs.json"
 
 type MapConfig = typeof configs.main;
 type LocalizedMessage = { key: TranslationKey; values?: { name?: string } };
+const KIOSK_RESET_DELAY = 60 * 1000;
 
 declare global {
   interface Window {
@@ -208,6 +209,58 @@ export default function App() {
     setRouteLoading(false);
     setRouteError(null);
   };
+
+  const resetKioskView = useCallback(() => {
+    routeRequestId.current += 1;
+    routeController.current?.abort();
+    routeController.current = null;
+    destinationRestored.current = true;
+
+    const url = new URL(window.location.href);
+    url.searchParams.delete("destination");
+    window.history.replaceState(window.history.state, "", url);
+
+    setSelectedBuilding(null);
+    setSelectedDestination(null);
+    setIsMenuOpen(false);
+    setRoute(null);
+    setRouteLoading(false);
+    setRouteError(null);
+    mapRef.current?.getMap().easeTo({
+      center: [config.longitude, config.latitude],
+      zoom: config.zoom,
+      pitch: config.pitch,
+      bearing: config.bearing,
+      duration: 1000,
+    });
+  }, [config]);
+
+  useEffect(() => {
+    let timeoutId = 0;
+    const resetTimeout = () => {
+      window.clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(resetKioskView, KIOSK_RESET_DELAY);
+    };
+    const activityEvents: Array<keyof WindowEventMap> = [
+      "pointerdown",
+      "pointermove",
+      "keydown",
+      "touchstart",
+      "wheel",
+    ];
+
+    activityEvents.forEach((eventName) => {
+      window.addEventListener(eventName, resetTimeout, { passive: true });
+    });
+    resetTimeout();
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      activityEvents.forEach((eventName) => {
+        window.removeEventListener(eventName, resetTimeout);
+      });
+    };
+  }, [resetKioskView]);
 
   const selectBuilding = (building: Building) => {
     navigateTo(
