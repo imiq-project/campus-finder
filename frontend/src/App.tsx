@@ -429,8 +429,9 @@ export default function App() {
     const map = mapRef.current?.getMap();
     if (!coordinates || coordinates.length < 2 || !map || !routeEnd) return "above";
 
-    const previousPoint = map.project(coordinates[coordinates.length - 2]);
-    const destinationPoint = map.project(routeEnd);
+    const previousCoordinates = coordinates[coordinates.length - 2];
+    const previousPoint = map.project([previousCoordinates[0], previousCoordinates[1]]);
+    const destinationPoint = map.project([routeEnd[0], routeEnd[1]]);
     const longitudeDirection = destinationPoint.x - previousPoint.x;
     const latitudeDirection = destinationPoint.y - previousPoint.y;
 
