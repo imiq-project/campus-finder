@@ -82,3 +82,60 @@
 .weather-message {
   margin: 0;
 }
+
+@media (max-width: 640px), (max-height: 500px) and (orientation: landscape) {
+  .weather-panel {
+    top: env(safe-area-inset-top);
+    width: min(9rem, calc(100vw - 1rem));
+  }
+
+  .weather-panel .glass-panel {
+    padding: 0.75rem;
+    border-radius: 1rem;
+  }
+
+  .weather-brand {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .weather-summary {
+    gap: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  .weather-summary svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .weather-language-toggle button {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .weather-brand-name {
+    display: none;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .weather-brand-name {
+    display: none;
+  }
+
+  .weather-brand {
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .weather-language-toggle {
+    margin-top: 0.25rem;
+  }
+
+  .weather-language-toggle button {
+    min-height: 2.5rem;
+  }
+}

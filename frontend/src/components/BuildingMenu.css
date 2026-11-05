@@ -71,3 +71,30 @@
 .building-menu-item.is-selected {
   background: rgba(255, 255, 255, 0.16);
 }
+
+@media (max-width: 640px), (max-height: 500px) and (orientation: landscape) {
+  .building-menu {
+    top: auto;
+    right: 0.5rem;
+    bottom: env(safe-area-inset-bottom);
+    left: 0.5rem;
+    width: auto;
+    max-height: min(75dvh, 36rem);
+    padding: 1rem;
+    border-radius: 1.25rem;
+  }
+
+  .building-menu-header {
+    min-height: 2.75rem;
+  }
+
+  .building-menu-close {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .building-menu-item {
+    min-height: 2.75rem;
+    padding: 0.75rem 0.625rem;
+  }
+}

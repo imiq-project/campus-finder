@@ -23,7 +23,7 @@
   padding: 0.2rem 0.4rem;
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 0.35rem;
-  background: rgba(122, 0, 63, 0.85);
+  background: var(--color-accent);
   box-shadow: 0 1px 4px #0008;
   color: #fff;
   font-size: 0.75rem;
@@ -128,4 +128,164 @@
   border-radius: 50%;
   background-color: #e11d48;
   box-shadow: 0 1px 4px #0008;
+}
+
+.app-shell {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.map-viewport {
+  width: 100%;
+  height: 100%;
+}
+
+.route-status {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.mobile-destination-popup {
+  display: none;
+}
+
+.building-panels > .glass-panel {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.building-panels > .glass-panel.is-selected {
+  border-color: rgba(255, 255, 255, 0.75);
+  background: rgba(122, 0, 63, 0.85);
+}
+
+.building-panels > .glass-panel:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px), (max-height: 500px) and (orientation: landscape) {
+  .building-panels {
+    top: auto;
+    bottom: 0;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom));
+    scroll-padding-inline: 0.75rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .building-panels::-webkit-scrollbar {
+    display: none;
+  }
+
+  .building-panels > .glass-panel {
+    display: flex;
+    flex: 0 0 auto;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    margin: 0.25rem !important;
+    padding: 0.625rem 0.875rem;
+    border-radius: 1rem;
+  }
+
+  .building-title {
+    gap: 0.4rem;
+    white-space: nowrap;
+  }
+
+  .building-title svg,
+  .building-panels > .glass-panel > div > svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .destination-marker-label {
+    max-width: calc(100vw - 2rem);
+    padding: 0.375rem;
+    font-size: 0.875rem;
+  }
+
+  .desktop-destination-popup {
+    display: none;
+  }
+
+  .mobile-destination-popup {
+    display: block;
+    position: absolute;
+    top: calc(env(safe-area-inset-top) + 0.5rem);
+    left: 0.5rem;
+    z-index: 2;
+    width: min(20rem, calc(100vw - 10.5rem));
+  }
+
+  .mobile-destination-popup .glass-panel {
+    padding: 0.625rem 0.75rem;
+    border-radius: 1rem;
+  }
+
+  .mobile-destination-popup .destination-qr-heading {
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  .destination-qr-destination {
+    max-width: 100%;
+    font-size: 0.875rem;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  .destination-popup-close {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    margin: -0.25rem;
+  }
+
+  .route-status {
+    bottom: calc(4.5rem + env(safe-area-inset-bottom));
+    max-width: 100%;
+  }
+
+  .route-status .glass-panel {
+    max-width: calc(100vw - 1rem);
+  }
+}
+
+@media (max-width: 420px) {
+  .building-panels {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .building-panels {
+    padding-top: 0.25rem;
+    padding-bottom: calc(0.25rem + env(safe-area-inset-bottom));
+  }
+
+  .building-panels > .glass-panel {
+    min-height: 2.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .route-status {
+    bottom: calc(3.75rem + env(safe-area-inset-bottom));
+  }
+
+  .destination-marker-label {
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+  }
 }

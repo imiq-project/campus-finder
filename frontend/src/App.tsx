@@ -174,13 +174,23 @@ export default function App() {
         const coordinates = feature.geometry.coordinates;
         const longitudes = coordinates.map(([longitude]) => longitude);
         const latitudes = coordinates.map(([, latitude]) => latitude);
+        const isCompactViewport = window.matchMedia(
+          "(max-width: 640px), (max-height: 500px) and (orientation: landscape)",
+        ).matches;
+        const isShortLandscape = window.matchMedia(
+          "(max-height: 500px) and (orientation: landscape)",
+        ).matches;
         mapRef.current?.fitBounds(
           [
             [Math.min(...longitudes), Math.min(...latitudes)],
             [Math.max(...longitudes), Math.max(...latitudes)],
           ],
           {
-            padding: 64,
+            padding: isShortLandscape
+              ? { top: 72, right: 24, bottom: 76, left: 24 }
+              : isCompactViewport
+                ? { top: 144, right: 24, bottom: 112, left: 24 }
+                : 64,
             duration: 1000,
             maxZoom: 20,
             bearing: mapRef.current?.getMap().getBearing() ?? config.bearing,
@@ -442,9 +452,9 @@ export default function App() {
   })();
 
   return (
-    <div lang={language}>
+    <div className="app-shell" lang={language}>
       <WeatherPanel language={language} onLanguageChange={changeLanguage} />
-      <div style={{ width: "100%", height: "100vh" }}>
+      <div className="map-viewport">
         <Map
           ref={mapRef}
           maxPitch={config.maxPitch}
@@ -513,7 +523,7 @@ export default function App() {
                 anchor="center"
               >
                 <div className="destination-marker">
-                  <Panel className={`destination-marker-label destination-marker-label-${routeLabelPosition}`}>
+                  <Panel className={`destination-marker-label desktop-destination-popup destination-marker-label-${routeLabelPosition}`}>
                     <div className="destination-qr">
                       <div className="destination-qr-heading">
                         <span className="destination-qr-destination">
@@ -550,6 +560,25 @@ export default function App() {
           )}
         </Map>
       </div>
+    {route && routeEnd && (
+      <div className="mobile-destination-popup">
+        <Panel>
+          <div className="destination-qr-heading">
+            <span className="destination-qr-destination">
+              {selectedDestination ? localizeDestination(selectedDestination, language, buildings) : translate(language, "routeEnd")}
+            </span>
+            <button
+              type="button"
+              className="destination-popup-close"
+              aria-label={translate(language, "closeRoute")}
+              onClick={clearRoute}
+            >
+              <X aria-hidden="true" />
+            </button>
+          </div>
+        </Panel>
+      </div>
+    )}
     <div className="building-panels">
       <Panel
         className={`m-2 cursor-pointer${selectedBuilding === null && selectedDestination?.startsWith("Restroom:") ? " is-selected" : ""}`}
@@ -608,7 +637,7 @@ export default function App() {
       />
     )}
     {(routeLoading || routeError) && (
-      <div style={{ position: "absolute", left: "0", bottom: "0" }}>
+      <div className="route-status">
         <Panel className="m-2">
           {routeLoading
             ? translate(language, "loadingRoute")
