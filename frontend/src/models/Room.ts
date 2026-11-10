@@ -4,19 +4,19 @@ export interface Room {
   building: string | number;
   buildingEn: string;
   room: string | number;
-  type: string;
+  types: string[];
   lat: number | null;
   lon: number | null;
 }
 
 export async function loadRooms(): Promise<Room[]> {
   const pois = await loadPois();
-  return pois.flatMap(({ name, name_en, lat, lon, rooms = [] }) =>
-    rooms.map(({ room, type }) => ({
-      building: name,
+  return pois.flatMap(({ name_de, name_en, lat, lon, rooms = [] }) =>
+    rooms.map(({ name, types }) => ({
+      building: name_de,
       buildingEn: name_en,
-      room,
-      type,
+      room: name,
+      types,
       lat,
       lon,
     })),
@@ -54,7 +54,9 @@ export function findNearestRoomByTypePrefix(
   let nearestDistance = Number.POSITIVE_INFINITY;
 
   for (const room of rooms) {
-    if (!room.type.startsWith(typePrefix) || room.lat === null || room.lon === null) continue;
+    if (!room.types.some((type) => type.startsWith(typePrefix)) ||
+      room.lat === null ||
+      room.lon === null) continue;
 
     const distance = distanceInMeters(origin, { lat: room.lat, lon: room.lon });
     if (distance < nearestDistance) {

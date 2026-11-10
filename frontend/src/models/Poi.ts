@@ -1,11 +1,13 @@
 export interface PoiRoom {
-  room: string | number;
-  type: string;
+  name: string | number;
+  types: string[];
 }
 
 export interface Poi {
-  name: string;
+  name_de: string;
   name_en: string;
+  description_de: string;
+  description_en: string;
   lat: number;
   lon: number;
   rooms?: PoiRoom[];
@@ -14,20 +16,25 @@ export interface Poi {
 function isPoiRoom(value: unknown): value is PoiRoom {
   if (typeof value !== "object" || value === null) return false;
 
-  return "room" in value &&
-    (typeof value.room === "string" ||
-      (typeof value.room === "number" && Number.isFinite(value.room))) &&
-    "type" in value &&
-    typeof value.type === "string";
+  return "name" in value &&
+    (typeof value.name === "string" ||
+      (typeof value.name === "number" && Number.isFinite(value.name))) &&
+    "types" in value &&
+    Array.isArray(value.types) &&
+    value.types.every((type) => typeof type === "string");
 }
 
 function isPoi(value: unknown): value is Poi {
   if (typeof value !== "object" || value === null) return false;
 
-  return "name" in value &&
-    typeof value.name === "string" &&
+  return "name_de" in value &&
+    typeof value.name_de === "string" &&
     "name_en" in value &&
     typeof value.name_en === "string" &&
+    "description_de" in value &&
+    typeof value.description_de === "string" &&
+    "description_en" in value &&
+    typeof value.description_en === "string" &&
     "lat" in value &&
     typeof value.lat === "number" &&
     Number.isFinite(value.lat) &&

@@ -83,19 +83,19 @@ export function translate(
 export function localizeDestination(
   destination: string,
   language: Language,
-  buildings: Array<{ name: string; nameEn: string }> = [],
+  buildings: Array<{ nameDe: string; nameEn: string }> = [],
 ): string {
   const localizedBuilding = (name: string): string => {
-    const building = buildings.find(({ name: germanName, nameEn }) =>
-      name === germanName || name === nameEn,
+    const building = buildings.find(({ nameDe, nameEn }) =>
+      name === nameDe || name === nameEn,
     );
-    return building ? (language === "en" ? building.nameEn : building.name) : name;
+    return building ? (language === "en" ? building.nameEn : building.nameDe) : name;
   };
 
-  const building = buildings.find(({ name: germanName, nameEn }) =>
-    destination === germanName || destination === nameEn,
+  const building = buildings.find(({ nameDe, nameEn }) =>
+    destination === nameDe || destination === nameEn,
   );
-  if (building) return language === "en" ? building.nameEn : building.name;
+  if (building) return language === "en" ? building.nameEn : building.nameDe;
 
   const destinationPrefixes: Array<[string, TranslationKey]> = [
     ["Restroom:", "restroomDestination"],

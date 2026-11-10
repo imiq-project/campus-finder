@@ -38,14 +38,14 @@ export default function BuildingMenu({
       </div>
       <ul className="building-menu-list">
         {buildings.map((building) => (
-          <li key={building.name}>
+          <li key={building.nameDe}>
             <button
-              className={`building-menu-item${selectedBuilding === building.name ? " is-selected" : ""}`}
+              className={`building-menu-item${selectedBuilding === building.nameDe ? " is-selected" : ""}`}
               type="button"
               onClick={() => onSelect(building)}
             >
               <House aria-hidden="true" />
-              <span>{building.localizedName(language)}</span>
+              <span>{building.localizedDescription(language)}</span>
             </button>
           </li>
         ))}

@@ -275,9 +275,9 @@ export default function App() {
   const selectBuilding = (building: Building) => {
     navigateTo(
       { lat: building.lat, lon: building.lon },
-      building.name,
-      building.name,
-      building.name,
+      building.nameDe,
+      building.nameDe,
+      building.nameDe,
     );
   };
 
@@ -362,15 +362,15 @@ export default function App() {
         return;
       }
 
-      const building = buildings.find(({ name }) => name === destinationParam);
+      const building = buildings.find(({ nameDe: name }) => name === destinationParam);
       if (!building) {
         showRouteError("buildingNotFound", { name: destinationParam });
         return;
       }
       navigateTo(
         { lat: building.lat, lon: building.lon },
-        building.name,
-        building.name,
+        building.nameDe,
+        building.nameDe,
         destinationParam,
       );
       return;
@@ -478,7 +478,7 @@ export default function App() {
         >
           {buildings.map((building) => (
             <Marker
-              key={building.name}
+              key={building.nameDe}
               longitude={building.lon}
               latitude={building.lat}
               anchor="center"
@@ -607,18 +607,6 @@ export default function App() {
           <span>{translate(language, "changingTable")}</span>
         </div>
       </Panel>
-      {buildings.slice(0, 5).map((building) => (
-        <Panel
-          key={building.name}
-          className={`m-2 cursor-pointer${selectedBuilding === building.name ? " is-selected" : ""}`}
-          onClick={() => selectBuilding(building)}
-        >
-          <div className="building-title">
-            <House aria-hidden="true" />
-            <span>{building.localizedName(language)}</span>
-          </div>
-        </Panel>
-      ))}
       <Panel className="m-2 cursor-pointer" onClick={openMenu}>
         <Ellipsis aria-hidden="true" />
         <span className="sr-only">{translate(language, "openBuildingList")}</span>
