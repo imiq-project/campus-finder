@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Map, { Layer, Marker, Source, type MapRef } from "react-map-gl/maplibre";
 import Panel from './components/Panel.tsx'
 import BuildingMenu from "./components/BuildingMenu.tsx";
+import MensaMenuPanel from "./components/MensaMenuPanel.tsx";
 import WeatherPanel from "./components/WeatherPanel.tsx";
 import Building, { loadBuildings } from "./models/Building.ts";
 import { findNearestRoomByTypePrefix, loadRooms, type Room } from "./models/Room.ts";
@@ -472,6 +473,7 @@ export default function App() {
   return (
     <div className="app-shell" lang={language}>
       <WeatherPanel language={language} onLanguageChange={changeLanguage} />
+      <MensaMenuPanel language={language} />
       <div className="map-viewport">
         <Map
           ref={mapRef}
