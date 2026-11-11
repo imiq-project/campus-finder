@@ -6,7 +6,7 @@ import WeatherPanel from "./components/WeatherPanel.tsx";
 import Building, { loadBuildings } from "./models/Building.ts";
 import { findNearestRoomByTypePrefix, loadRooms, type Room } from "./models/Room.ts";
 import { loadRoute, type RouteFeature } from "./models/Route.ts";
-import { Baby, ChevronLeft, Droplets, Ellipsis, Toilet, X } from "lucide-react";
+import { Baby, ChevronLeft, Droplets, Ellipsis, House, Toilet, X } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import {
   getInitialLanguage,
@@ -121,6 +121,7 @@ export default function App() {
         zoom: map.getZoom(),
         pitch: map.getPitch(),
         bearing: map.getBearing(),
+        featured: config.featured,
       };
 
       console.log(JSON.stringify(mapConfig, null, 2));
@@ -445,6 +446,11 @@ export default function App() {
   }, [buildings, buildingsError, buildingsLoaded, config, language, mapLoaded, navigateTo, rooms, roomsError, roomsLoaded, showRouteError]);
 
   const openMenu = () => setIsMenuOpen((isOpen) => !isOpen);
+  const featuredBuildings = config.featured
+    .map((name) => buildings.find(
+      (building) => building.nameDe === name || building.nameEn === name,
+    ))
+    .filter((building): building is Building => building !== undefined);
   const routeEnd = route?.geometry.coordinates.at(-1);
   const routeLabelPosition = (() => {
     const coordinates = route?.geometry.coordinates;
@@ -592,6 +598,21 @@ export default function App() {
       </div>
     )}
     <div className="building-panels">
+      {featuredBuildings.map((building) => (
+        <Panel
+          key={building.nameDe}
+          className={`m-2 cursor-pointer${selectedBuilding === building.nameDe ? " is-selected" : ""}`}
+          onClick={() => {
+            setIsFacilityMenuOpen(false);
+            selectBuilding(building);
+          }}
+        >
+          <div className="building-title">
+            <House aria-hidden="true" />
+            <span>{building.localizedName(language)}</span>
+          </div>
+        </Panel>
+      ))}
       {!isFacilityMenuOpen && (
         <Panel
           className="m-2 cursor-pointer"

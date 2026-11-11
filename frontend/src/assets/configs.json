@@ -5,7 +5,11 @@
         "location": [11.644423729478149, 52.13990136536776],
         "zoom": 16.5,
         "pitch": 44.48057832724647,
-        "bearing": 8
+        "bearing": 8,
+        "featured": [
+            "Mensa",
+            "Library"
+        ]
     },
     "pfaelzer": {
         "maxPitch": 80,
@@ -13,7 +17,11 @@
         "location": [11.645297687180646, 52.13984623034621],
         "zoom": 17,
         "pitch": 60,
-        "bearing": -84
+        "bearing": -84,
+        "featured": [
+            "Mensa",
+            "Library"
+        ]
     },
     "imiq": {
         "maxPitch": 80,
@@ -21,6 +29,10 @@
         "location": [11.654865840269293, 52.1412323786933],
         "zoom": 16.39860923661784,
         "pitch": 53.49871126153701,
-        "bearing": -149.18864242889163
+        "bearing": -149.18864242889163,
+        "featured": [
+            "Mensa",
+            "Library"
+        ]
     }
 }
