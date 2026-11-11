@@ -4,9 +4,9 @@ import Panel from './components/Panel.tsx'
 import BuildingMenu from "./components/BuildingMenu.tsx";
 import WeatherPanel from "./components/WeatherPanel.tsx";
 import Building, { loadBuildings } from "./models/Building.ts";
-import { findNearestRestroom, findNearestRoomByTypePrefix, loadRooms, type Room } from "./models/Room.ts";
+import { findNearestRoomByTypePrefix, loadRooms, type Room } from "./models/Room.ts";
 import { loadRoute, type RouteFeature } from "./models/Route.ts";
-import { Baby, Droplets, Ellipsis, House, Toilet, X } from "lucide-react";
+import { Baby, ChevronLeft, Droplets, Ellipsis, Toilet, X } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import {
   getInitialLanguage,
@@ -48,6 +48,7 @@ export default function App() {
   const [selectedBuilding, setSelectedBuilding] = useState<string | null>(null);
   const [selectedDestination, setSelectedDestination] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFacilityMenuOpen, setIsFacilityMenuOpen] = useState(false);
   const [route, setRoute] = useState<RouteFeature | null>(null);
   const [routeLoading, setRouteLoading] = useState(false);
   const [routeError, setRouteError] = useState<LocalizedMessage | null>(null);
@@ -190,7 +191,7 @@ export default function App() {
               ? { top: 72, right: 24, bottom: 76, left: 24 }
               : isCompactViewport
                 ? { top: 144, right: 24, bottom: 112, left: 24 }
-                : 64,
+                : 364,
             duration: 1000,
             maxZoom: 20,
             bearing: mapRef.current?.getMap().getBearing() ?? config.bearing,
@@ -281,26 +282,26 @@ export default function App() {
     );
   };
 
-  const selectNearestRestroom = () => {
+  const selectNearestGenderedRestroom = (gender: "male" | "female") => {
     if (roomsError) {
       showRouteError("roomsLoadError");
       return;
     }
 
-    const restroom = findNearestRestroom(rooms, {
+    const restroom = findNearestRoomByTypePrefix(rooms, {
       lat: config.location[1],
       lon: config.location[0],
-    });
+    }, `restroom-${gender}`);
     if (!restroom || restroom.lat === null || restroom.lon === null) {
-      showRouteError("restroomLocationsUnavailable");
+      showRouteError(gender === "male" ? "maleRestroomLocationsUnavailable" : "femaleRestroomLocationsUnavailable");
       return;
     }
 
     navigateTo(
       { lat: restroom.lat, lon: restroom.lon },
-      `Restroom: ${restroom.building}, room ${restroom.room}`,
+      `${gender === "male" ? "Male restroom" : "Female restroom"}: ${restroom.building}, room ${restroom.room}`,
       null,
-      "restroom",
+      `restroom-${gender}`,
     );
   };
 
@@ -354,7 +355,7 @@ export default function App() {
     const destinationParam = initialDestination.current;
     if (!destinationParam || destinationRestored.current || !mapLoaded) return;
 
-    if (!["restroom", "period-products", "changing-table"].includes(destinationParam)) {
+    if (!["restroom", "restroom-male", "restroom-female", "period-products", "changing-table"].includes(destinationParam)) {
       if (!buildingsLoaded) return;
       destinationRestored.current = true;
       if (buildingsError) {
@@ -384,18 +385,29 @@ export default function App() {
       return;
     }
 
-    if (destinationParam === "restroom") {
-      const room = findNearestRestroom(rooms, {
+    if (destinationParam === "restroom" || destinationParam === "restroom-male" || destinationParam === "restroom-female") {
+      const gender = destinationParam === "restroom-male"
+        ? "male"
+        : destinationParam === "restroom-female"
+          ? "female"
+          : null;
+      const room = findNearestRoomByTypePrefix(rooms, {
         lat: config.location[1],
         lon: config.location[0],
-      });
+      }, gender ? `restroom-${gender}` : "restroom");
       if (!room || room.lat === null || room.lon === null) {
-        showRouteError("restroomLocationsUnavailable");
+        showRouteError(
+          gender === "male"
+            ? "maleRestroomLocationsUnavailable"
+            : gender === "female"
+              ? "femaleRestroomLocationsUnavailable"
+              : "restroomLocationsUnavailable",
+        );
         return;
       }
       navigateTo(
         { lat: room.lat, lon: room.lon },
-        `Restroom: ${room.building}, room ${room.room}`,
+        `${gender === "male" ? "Male restroom" : gender === "female" ? "Female restroom" : "Restroom"}: ${room.building}, room ${room.room}`,
         null,
         destinationParam,
       );
@@ -580,33 +592,78 @@ export default function App() {
       </div>
     )}
     <div className="building-panels">
-      <Panel
-        className={`m-2 cursor-pointer${selectedBuilding === null && selectedDestination?.startsWith("Restroom:") ? " is-selected" : ""}`}
-        onClick={selectNearestRestroom}
-      >
-        <div className="building-title">
-          <Toilet aria-hidden="true" />
-          <span>WC</span>
-        </div>
-      </Panel>
-      <Panel
-        className={`m-2 cursor-pointer${selectedBuilding === null && selectedDestination?.startsWith("Period products:") ? " is-selected" : ""}`}
-        onClick={selectNearestPeriodProduct}
-      >
-        <div className="building-title">
-          <Droplets aria-hidden="true" />
-          <span>{translate(language, "periodProducts")}</span>
-        </div>
-      </Panel>
-      <Panel
-        className={`m-2 cursor-pointer${selectedBuilding === null && selectedDestination?.startsWith("Changing table:") ? " is-selected" : ""}`}
-        onClick={selectNearestChangingTable}
-      >
-        <div className="building-title">
-          <Baby aria-hidden="true" />
-          <span>{translate(language, "changingTable")}</span>
-        </div>
-      </Panel>
+      {!isFacilityMenuOpen && (
+        <Panel
+          className="m-2 cursor-pointer"
+          onClick={() => setIsFacilityMenuOpen(true)}
+        >
+          <div className="building-title">
+            <Toilet aria-hidden="true" />
+            <span>{translate(language, "restroomMenu")}</span>
+          </div>
+        </Panel>
+      )}
+      {isFacilityMenuOpen && (
+        <>
+          <Panel
+            className={`m-2 cursor-pointer${selectedBuilding === null && selectedDestination?.startsWith("Male restroom:") ? " is-selected" : ""}`}
+            onClick={() => {
+              setIsFacilityMenuOpen(false);
+              selectNearestGenderedRestroom("male");
+            }}
+          >
+            <div className="building-title">
+              <Toilet aria-hidden="true" />
+              <span>{translate(language, "maleRestroom")}</span>
+            </div>
+          </Panel>
+          <Panel
+            className={`m-2 cursor-pointer${selectedBuilding === null && selectedDestination?.startsWith("Female restroom:") ? " is-selected" : ""}`}
+            onClick={() => {
+              setIsFacilityMenuOpen(false);
+              selectNearestGenderedRestroom("female");
+            }}
+          >
+            <div className="building-title">
+              <Toilet aria-hidden="true" />
+              <span>{translate(language, "femaleRestroom")}</span>
+            </div>
+          </Panel>
+          <Panel
+            className={`m-2 cursor-pointer${selectedBuilding === null && selectedDestination?.startsWith("Period products:") ? " is-selected" : ""}`}
+            onClick={() => {
+              setIsFacilityMenuOpen(false);
+              selectNearestPeriodProduct();
+            }}
+          >
+            <div className="building-title">
+              <Droplets aria-hidden="true" />
+              <span>{translate(language, "periodProducts")}</span>
+            </div>
+          </Panel>
+          <Panel
+            className={`m-2 cursor-pointer${selectedBuilding === null && selectedDestination?.startsWith("Changing table:") ? " is-selected" : ""}`}
+            onClick={() => {
+              setIsFacilityMenuOpen(false);
+              selectNearestChangingTable();
+            }}
+          >
+            <div className="building-title">
+              <Baby aria-hidden="true" />
+              <span>{translate(language, "changingTable")}</span>
+            </div>
+          </Panel>
+          <Panel
+            className="m-2 cursor-pointer"
+            onClick={() => setIsFacilityMenuOpen(false)}
+          >
+            <div className="building-title">
+              <ChevronLeft aria-hidden="true" />
+              <span className="sr-only">{translate(language, "closeFacilityMenu")}</span>
+            </div>
+          </Panel>
+        </>
+      )}
       <Panel className="m-2 cursor-pointer" onClick={openMenu}>
         <Ellipsis aria-hidden="true" />
         <span className="sr-only">{translate(language, "openBuildingList")}</span>
