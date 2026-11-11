@@ -94,7 +94,7 @@ def room_types(row: dict[str, str]) -> list[str]:
     return types
 
 
-with open("Raumatlas.csv", "r", newline="", encoding="utf-8") as file:
+with open("Raumatlas.csv", "r", newline="", encoding="latin8") as file:
     reader = csv.DictReader(file, delimiter=";")
     for row in reader:
         building_id = row["Geb"]

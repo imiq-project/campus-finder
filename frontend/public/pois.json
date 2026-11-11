@@ -182,7 +182,8 @@
             {
                 "name": "203",
                 "types": [
-                    "restroom-male"
+                    "restroom-male",
+                    "changing-table"
                 ]
             },
             {
@@ -943,7 +944,8 @@
             {
                 "name": "10",
                 "types": [
-                    "restroom-female"
+                    "restroom-female",
+                    "changing-table"
                 ]
             },
             {
@@ -2361,8 +2363,8 @@
         "description_de": "Geb\u00e4ude 31: Sporthalle 3",
         "name_en": "Sports Hall 3",
         "description_en": "Building 31: Sports Hall 3",
-        "lat": 52.140934,
-        "lon": 11.642217,
+        "lat": 52.13990861264987,
+        "lon": 11.64886707162935,
         "rooms": [
             {
                 "name": "4",
@@ -2699,7 +2701,19 @@
                 ]
             },
             {
+                "name": "K57",
+                "types": [
+                    "restroom"
+                ]
+            },
+            {
                 "name": "K58",
+                "types": [
+                    "restroom"
+                ]
+            },
+            {
+                "name": "K60",
                 "types": [
                     "restroom"
                 ]
