@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CloudRain, CloudSun } from "lucide-react";
+import { Clock, CloudRain, CloudSun } from "lucide-react";
 import Panel from "./Panel.tsx";
 import { translate, type Language } from "../i18n.ts";
 import "./WeatherPanel.css";
@@ -54,6 +54,12 @@ interface WeatherPanelProps {
 export default function WeatherPanel({ language, onLanguageChange }: WeatherPanelProps) {
   const [weather, setWeather] = useState<Weather | null>(null);
   const [hasError, setHasError] = useState(false);
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => setNow(new Date()), 1000);
+    return () => window.clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -95,6 +101,15 @@ export default function WeatherPanel({ language, onLanguageChange }: WeatherPane
             Intelligenter Mobilitätsraum im Quartier
           </span>
         </a>
+        <time className="weather-time" dateTime={now.toISOString()}>
+          <Clock aria-hidden="true" />
+          <span>
+            {new Intl.DateTimeFormat(language, {
+              hour: "2-digit",
+              minute: "2-digit",
+            }).format(now)}
+          </span>
+        </time>
         {hasError ? (
           <p className="weather-message" role="alert">
             {translate(language, "weatherLoadError")}

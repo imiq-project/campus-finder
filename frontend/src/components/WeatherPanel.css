@@ -65,6 +65,22 @@
   outline-offset: 2px;
 }
 
+.weather-time {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.weather-time svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+}
+
 .weather-summary {
   display: flex;
   align-items: center;
@@ -92,6 +108,10 @@
   .weather-panel .glass-panel {
     padding: 0.75rem;
     border-radius: 1rem;
+  }
+
+  .weather-time {
+    display: none;
   }
 
   .weather-brand {
