@@ -193,7 +193,7 @@ export default function App() {
               ? { top: 72, right: 24, bottom: 76, left: 24 }
               : isCompactViewport
                 ? { top: 144, right: 24, bottom: 112, left: 24 }
-                : 364,
+                : 200,
             duration: 1000,
             maxZoom: 20,
             bearing: mapRef.current?.getMap().getBearing() ?? config.bearing,
@@ -503,9 +503,13 @@ export default function App() {
               latitude={building.lat}
               anchor="center"
             >
-              <div className="building-map-label">
+              <button
+                type="button"
+                className="building-map-label"
+                onClick={() => selectBuilding(building)}
+              >
                 {building.localizedName(language)}
-              </div>
+              </button>
             </Marker>
           ))}
           <Marker
