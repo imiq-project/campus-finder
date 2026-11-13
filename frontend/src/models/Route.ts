@@ -1,6 +1,6 @@
 import type { Feature, LineString } from "geojson";
 
-const routeEndpoint = "https://imiq-app.et.uni-magdeburg.de/api/graphhopper/route";
+const routeEndpoint = "https://imiq-public.et.uni-magdeburg.de/api/graphhopper/route";
 
 export type RouteFeature = Feature<LineString>;
 
